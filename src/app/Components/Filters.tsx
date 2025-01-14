@@ -1,7 +1,19 @@
 import { FaWandMagicSparkles } from "react-icons/fa6";
 import { IoMdSettings } from "react-icons/io";
-
-export default function Filters() {
+interface Props {
+  setStory: (story: string | null) => void;
+  setComprehensionExercises: (exercises: any) => void;
+}
+export default function Filters({
+  setComprehensionExercises,
+  setStory,
+}: Props) {
+  async function generateContent() {
+    const response = await fetch("/api/generativeAI", { method: "GET" });
+    const res = await response.json();
+    setStory(res.data.story);
+    setComprehensionExercises(res.data.exercises);
+  }
   return (
     <>
       <div className="flex flex-wrap gap-5 justify-between pr-4 w-full text-base max-md:max-w-full items-center">
@@ -35,7 +47,10 @@ export default function Filters() {
           placeholder="Enter context or theme for your story..."
           className="flex-grow px-4 py-3 bg-gray-50 dark:bg-[#111827] text-gray-800 dark:text-gray-100 border border-solid rounded-xl shadow-sm border-gray-300 dark:border-gray-600"
         />
-        <div className="flex gap-3.5 px-4 mr-2 py-3 text-center text-gray-800  whitespace-nowrap bg-gray-200  rounded-xl items-center ml-4 cursor-pointer">
+        <div
+          className="flex gap-3.5 px-4 mr-2 py-3 text-center text-gray-800  whitespace-nowrap bg-gray-200  rounded-xl items-center ml-4 cursor-pointer"
+          onClick={generateContent}
+        >
           <FaWandMagicSparkles />
           <div>Generate</div>
         </div>

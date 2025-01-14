@@ -1,19 +1,16 @@
 "use client";
 import React, { useState } from "react";
-import { ComprehensionExercises } from "./Components/ComprehensionExercises";
 import Header from "./Components/Header";
 import DisplayControllers from "./Components/DisplayControllers";
 import Filters from "./Components/Filters";
 import GeneratedStory from "./Components/GeneratedStoryContainer";
 import FunctionButtons from "./Components/FunctionButtons";
-import CorrectionModal from "./Components/CorrectionModal";
-import TranslationContainer from "./Components/TranslationContainer";
 import { IoLanguage } from "react-icons/io5";
 import { IoIosMoon, IoIosSunny } from "react-icons/io";
+import GeneratedContentContainer from "./Components/GeneratedContentContainer";
 
 export default function Page() {
   const [darkMode, setDarkMode] = useState(false);
-
   const toggleTheme = () => {
     const htmlElement = document.documentElement;
     if (darkMode) {
@@ -48,16 +45,7 @@ export default function Page() {
         <Header />
         <div className="flex flex-col rounded-none mt-44 mb-16">
           <DisplayControllers />
-          <div
-            className={`flex flex-col py-5 pl-6 mt-10 w-full ${
-              darkMode ? "bg-[#2e2e3e]" : "bg-gray-50"
-            } rounded-2xl shadow-[0px_4px_6px_rgba(0,0,0,0.1)] max-md:pl-5 max-md:max-w-full mr-4`}
-          >
-            <Filters />
-            <GeneratedStory />
-            {/* <TranslationContainer /> */}
-            <FunctionButtons />
-          </div>
+          <GeneratedContentContainer />
         </div>
         {/* <ComprehensionExercises /> */}
         {/* <CorrectionModal /> */}
