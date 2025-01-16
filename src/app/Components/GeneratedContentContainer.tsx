@@ -11,7 +11,7 @@ export default function GeneratedContentContainer() {
   return (
     <>
       <div
-        className={` mb-16 flex flex-col py-5 pl-6 mt-10 w-full  bg-gray-50 dark:bg-[#2e2e3e] rounded-2xl shadow-[0px_4px_6px_rgba(0,0,0,0.1)] max-md:pl-5 max-md:max-w-full mr-4`}
+        className={` flex flex-col py-5 pl-6 mt-10 w-full  bg-gray-50 dark:bg-[#2e2e3e] rounded-2xl shadow-[0px_4px_6px_rgba(0,0,0,0.1)] max-md:pl-5 max-md:max-w-full mr-4`}
       >
         <Filters
           setStory={setStory}

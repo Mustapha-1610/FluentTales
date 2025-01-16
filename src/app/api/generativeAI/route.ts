@@ -11,7 +11,7 @@ export async function GET() {
     const aiPrompt = `
 Generate a medium-length story based on the following filters:
 
-- Language: {english}
+- Language: {german}
 - Genre: {adventure}
 - Length : {Medium}
 - Language Level : {A1}
