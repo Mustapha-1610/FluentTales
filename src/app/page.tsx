@@ -2,14 +2,10 @@
 import React, { useState } from "react";
 import Header from "./Components/Header";
 import DisplayControllers from "./Components/DisplayControllers";
-import Filters from "./Components/Filters";
-import GeneratedStory from "./Components/GeneratedStoryContainer";
-import FunctionButtons from "./Components/FunctionButtons";
 import { IoLanguage } from "react-icons/io5";
 import { IoIosMoon, IoIosSunny } from "react-icons/io";
 import GeneratedContentContainer from "./Components/GeneratedContentContainer";
 import VideoCarousel from "./Components/CarouselTest";
-import Carousel from "./Components/CarouselTest";
 
 export default function Page() {
   const [darkMode, setDarkMode] = useState(false);
@@ -22,23 +18,7 @@ export default function Page() {
     }
     setDarkMode(!darkMode);
   };
-  const videos = [
-    {
-      id: "ZIoKZ_1tAV8",
-      creatorName: "Rick Astley",
-      creatorUrl: "https://www.youtube.com/watch?v=ZIoKZ_1tAV8&t=872s",
-    },
-    {
-      id: "dQw4w9WgXcQ", // Example YouTube video ID
-      creatorName: "Rick Astley",
-      creatorUrl: "https://www.youtube.com/@RickAstleyYT",
-    },
-    {
-      id: "dQw4w9WgXcQ", // Example YouTube video ID
-      creatorName: "Rick Astley",
-      creatorUrl: "https://www.youtube.com/@RickAstleyYT",
-    },
-  ];
+
   return (
     <div
       className={` pb-16 min-h-screen flex flex-col items-center ${
@@ -67,9 +47,6 @@ export default function Page() {
         </div>
         {/* <ComprehensionExercises /> */}
         {/* <CorrectionModal /> */}
-      </div>
-      <div className="  ">
-        <VideoCarousel videos={videos} />
       </div>
     </div>
   );

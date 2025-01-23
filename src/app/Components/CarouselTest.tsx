@@ -11,7 +11,7 @@ interface Props {
   videos: VideoData[];
 }
 
-const VideoCarousel = ({ videos }: Props) => {
+const VideoCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
 
   const nextSlide = () => {
@@ -25,7 +25,23 @@ const VideoCarousel = ({ videos }: Props) => {
       setCurrentIndex(currentIndex - 1);
     }
   };
-
+  const videos = [
+    {
+      id: "ZIoKZ_1tAV8",
+      creatorName: "Rick Astley",
+      creatorUrl: "https://www.youtube.com/watch?v=ZIoKZ_1tAV8&t=872s",
+    },
+    {
+      id: "dQw4w9WgXcQ", // Example YouTube video ID
+      creatorName: "Rick Astley",
+      creatorUrl: "https://www.youtube.com/@RickAstleyYT",
+    },
+    {
+      id: "dQw4w9WgXcQ", // Example YouTube video ID
+      creatorName: "Rick Astley",
+      creatorUrl: "https://www.youtube.com/@RickAstleyYT",
+    },
+  ];
   return (
     <div className="flex flex-col items-center">
       <div className="flex justify-between items-center w-[900px] max-w-[1000px]">
