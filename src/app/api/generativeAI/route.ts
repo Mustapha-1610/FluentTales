@@ -1,22 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-export async function GET() {
+export async function POST(req: NextRequest, res: NextResponse) {
   try {
     const genAI = new GoogleGenerativeAI(
       "AIzaSyBRHhtmff5YjTuxslWbc8wc5Q2UJO9TSYM"
     );
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
-
+    const {
+      generationLength,
+      grammarLevel,
+      languageLevel,
+      targetAudiance,
+      context,
+    } = await req.json();
     const aiPrompt = `
-Generate a medium-length story based on the following filters:
+Generate a german story based on the following filters:
 
-- Language: {german}
-- Genre: {adventure}
-- Length : {Medium}
-- Language Level : {A1}
-- Target Audience: {children}
-- Theme: {nature}
+- Context/Theme: ${context}
+- Length : ${generationLength}
+- Language Level : ${languageLevel}
+- Target Audience: ${targetAudiance}
+- Grammer level: ${grammarLevel}
 
 Output the results in valid JSON format as specified below.Make sure to generate 4 exercises compared to the 1st example, Do not include any additional text or commentary outside the JSON object, Ensure the story's length corresponds to the specified category:
 

@@ -6,17 +6,15 @@ import { FilterForm } from "../Types/filter-form";
 interface Props {
   setStory: (story: string | null) => void;
   setComprehensionExercises: (exercises: any) => void;
+  setLoading: (loading: boolean) => void;
+  setShowComprehensionExercises: (show: boolean) => void;
 }
 export default function Filters({
   setComprehensionExercises,
   setStory,
+  setLoading,
+  setShowComprehensionExercises,
 }: Props) {
-  async function generateContent() {
-    const response = await fetch("/api/generativeAI", { method: "GET" });
-    const res = await response.json();
-    setStory(res.data.story);
-    setComprehensionExercises(res.data.exercises);
-  }
   const [isFiltersModalOpen, setIsFilterModalOpen] = useState<boolean>(false);
   const [filterOptions, setFilterOptions] = useState<FilterForm>({
     generationLength: "short",
@@ -24,6 +22,37 @@ export default function Filters({
     languageLevel: "A1",
     targetAudiance: "general",
   });
+  const [storyContext, setStoryContext] = useState<string>("");
+  async function generateContent() {
+    if (
+      storyContext !== "" ||
+      (storyContext !== null && storyContext.length >= 10)
+    ) {
+      try {
+        setComprehensionExercises(null);
+        setShowComprehensionExercises(false);
+        setLoading(true);
+        const response = await fetch("/api/generativeAI", {
+          method: "POST",
+          body: JSON.stringify({
+            generationLength: filterOptions.generationLength,
+            grammarLevel: filterOptions.grammarLevel,
+            languageLevel: filterOptions.languageLevel,
+            targetAudiance: filterOptions.targetAudiance,
+            context: storyContext,
+          }),
+        });
+        const res = await response.json();
+        setStory(res.data.story);
+        setComprehensionExercises(res.data.exercises);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  }
+
   return (
     <>
       <div className="flex flex-wrap gap-5 justify-between pr-4 w-full text-base max-md:max-w-full items-center">
@@ -73,11 +102,13 @@ export default function Filters({
       <div className="flex mt-4 mr-4 items-center">
         <input
           type="text"
+          value={storyContext}
+          onChange={(e) => setStoryContext(e.target.value)}
           placeholder="Enter context or theme for your story..."
           className="flex-grow px-4 py-3 bg-gray-50 dark:bg-[#111827] text-gray-800 dark:text-gray-100 border border-solid rounded-xl shadow-sm border-gray-300 dark:border-gray-600"
         />
         <div
-          className="flex gap-3.5 px-4 mr-2 py-3 text-center text-gray-800  whitespace-nowrap bg-gray-200  rounded-xl items-center ml-4 cursor-pointer max-md:w-auto w-full"
+          className="flex gap-3.5 px-4 mr-2 py-3 text-center text-gray-800  whitespace-nowrap bg-gray-200  rounded-xl items-center ml-4 cursor-pointer "
           onClick={generateContent}
         >
           <FaWandMagicSparkles />

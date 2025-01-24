@@ -15,7 +15,7 @@ const QuestionOption: React.FC<QuestionOptionProps> = ({
 }) => {
   return (
     <div
-      className={`flex gap-2 px-3 py-2.5 rounded-lg border text-black ${
+      className={`  flex gap-2 px-3 py-2.5 rounded-lg border text-black ${
         isAnswered
           ? isCorrect
             ? "bg-green-500 text-white border-green-500"
@@ -111,7 +111,7 @@ const ComprehensionExercises: React.FC<ComprehensionExercisesProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-xl border border-zinc-300 shadow-sm p-5 mb-16">
+    <div className="bg-white rounded-xl border border-zinc-300 shadow-sm p-5 ">
       <h2 className="text-xl font-semibold text-gray-800 mb-6">
         Comprehension Exercises
       </h2>
