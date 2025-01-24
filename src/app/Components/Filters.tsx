@@ -27,8 +27,8 @@ export default function Filters({
   return (
     <>
       <div className="flex flex-wrap gap-5 justify-between pr-4 w-full text-base max-md:max-w-full items-center">
-        <div className="flex gap-5">
-          <div className="flex gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900 rounded-xl items-center">
+        <div className="flex flex-wrap gap-5">
+          <div className="flex gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900 rounded-xl items-center max-md:w-full">
             <div className="text-gray-700 dark:text-gray-300 font-bold">
               Language Level:
             </div>
@@ -36,7 +36,7 @@ export default function Filters({
               {filterOptions.languageLevel}
             </div>
           </div>
-          <div className="flex gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900 rounded-xl items-center">
+          <div className="flex gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900 rounded-xl items-center max-md:w-full">
             <div className="text-gray-700 dark:text-gray-300 font-bold">
               Grammer Difficulty:
             </div>
@@ -44,7 +44,7 @@ export default function Filters({
               {filterOptions.grammarLevel}
             </div>
           </div>
-          <div className="flex gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900 rounded-xl items-center">
+          <div className="flex gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900 rounded-xl items-center max-md:w-full">
             <div className="text-gray-700 dark:text-gray-300 font-bold">
               Story Length:
             </div>
@@ -52,7 +52,7 @@ export default function Filters({
               {filterOptions.generationLength}
             </div>
           </div>
-          <div className="flex gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900 rounded-xl items-center">
+          <div className="flex gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900 rounded-xl items-center max-md:w-full">
             <div className="text-gray-700 dark:text-gray-300 font-bold">
               Target Audience:
             </div>
@@ -77,7 +77,7 @@ export default function Filters({
           className="flex-grow px-4 py-3 bg-gray-50 dark:bg-[#111827] text-gray-800 dark:text-gray-100 border border-solid rounded-xl shadow-sm border-gray-300 dark:border-gray-600"
         />
         <div
-          className="flex gap-3.5 px-4 mr-2 py-3 text-center text-gray-800  whitespace-nowrap bg-gray-200  rounded-xl items-center ml-4 cursor-pointer"
+          className="flex gap-3.5 px-4 mr-2 py-3 text-center text-gray-800  whitespace-nowrap bg-gray-200  rounded-xl items-center ml-4 cursor-pointer max-md:w-auto w-full"
           onClick={generateContent}
         >
           <FaWandMagicSparkles />
