@@ -2,10 +2,7 @@ import { useState } from "react";
 import Filters from "./Filters";
 import GeneratedStory from "./GeneratedStoryContainer";
 import ComprehensionExercises from "./ComprehensionExercises";
-import TranslationButton from "../FunctionalityButtonsComponents/Translate";
-import DownloadButton from "../FunctionalityButtonsComponents/DownloadButton";
 import CopyButton from "../FunctionalityButtonsComponents/CopyButton";
-import HearingButton from "../FunctionalityButtonsComponents/HearingButton";
 import GenerateExercises from "../FunctionalityButtonsComponents/GenerateExercises";
 
 export default function GeneratedContentContainer() {
@@ -14,6 +11,26 @@ export default function GeneratedContentContainer() {
   const [comprehensionExercises, setComprehensionExercises] = useState(null);
   const [showComprehensionExercises, setShowComprehensionExercises] =
     useState<boolean>(false);
+  const [loadingComprehensionExercises, setLoadingComprehensionExercises] =
+    useState<boolean>(false);
+  async function regenerateExecersises() {
+    try {
+      setLoadingComprehensionExercises(true);
+      const response = await fetch("/api/regenerateExercise", {
+        method: "POST",
+        body: JSON.stringify({
+          context: story,
+          previousExercises: comprehensionExercises,
+        }),
+      });
+      const res = await response.json();
+      setComprehensionExercises(res.data.exercises);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoadingComprehensionExercises(false);
+    }
+  }
   return (
     <>
       <div
@@ -28,19 +45,19 @@ export default function GeneratedContentContainer() {
         <GeneratedStory story={story} isLoading={loading} />
 
         <div className="flex flex-wrap gap-3 self-end pl-20 mr-6 mt-4 bg-black bg-opacity-0 max-md:pl-5 max-md:mr-2.5">
-          <TranslationButton />
-          <DownloadButton />
-          <CopyButton />
-          <HearingButton />
           <GenerateExercises
             comprehenstionExercises={comprehensionExercises}
             setShowComprehensionExercises={setShowComprehensionExercises}
+            contentRegeneration={regenerateExecersises}
+            showComprehensionExercises={showComprehensionExercises}
           />
+          <CopyButton />
         </div>
       </div>
       {showComprehensionExercises && (
         <ComprehensionExercises
           comprehension_exercises={comprehensionExercises}
+          isLoading={loadingComprehensionExercises}
         />
       )}
     </>
