@@ -1,0 +1,41 @@
+{
+  "Header": {
+    "title": "FluentTales",
+    "about": "Transformez votre apprentissage des langues en une expérience engageante et personnalisée. Créez des histoires uniques qui captent vos intérêts, plongez dans des exercices interactifs et améliorez vos compétences en lecture, écoute et écriture avec des retours en temps réel de l'IA."
+  },
+  "Filters": {
+    "easy": "facile",
+    "intermediate": "intermédiaire",
+    "hard": "difficile",
+    "A1": "A1",
+    "A2": "A2",
+    "B1": "B1",
+    "B2": "B2",
+    "short": "court",
+    "medium": "moyen",
+    "long": "long",
+    "kids": "enfants",
+    "teenagers": "adolescents",
+    "adults": "adultes",
+    "general": "général",
+    "Language Level": "Niveau de langue",
+    "Text Length": "Longueur du texte",
+    "Grammar Difficulty": "Difficulté grammaticale",
+    "Target Audience": "Public cible",
+    "Filter Settings": "Paramètres des filtres",
+    "Story Length": "Longueur de l'histoire",
+    "Edit Filters": "Modifier les filtres",
+    "Generate": "Générer"
+  },
+  "Buttons": {
+    "confirm": "Confirmer",
+    "cancel": "Annuler",
+    "loading": "Chargement",
+    "Regenerate Exercises": "Régénérer les exercices",
+    "Generate Exercises": "Générer des exercices"
+  },
+  "ComprehensionExercises": {
+    "title": "Exercices de compréhension",
+    "Check Answers": "Vérifier les réponses"
+  }
+}

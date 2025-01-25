@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import React, { useState, useEffect } from "react";
 import { PulseLoader } from "react-spinners";
 
@@ -131,6 +132,7 @@ const ComprehensionExercises: React.FC<ComprehensionExercisesProps> = ({
   const handleCheckAnswers = () => {
     setIsAnswered(true);
   };
+  const t = useTranslations("ComprehensionExercises");
 
   return (
     <div className="relative  dark:bg-gray-800 rounded-xl shadow-sm p-5">
@@ -142,7 +144,7 @@ const ComprehensionExercises: React.FC<ComprehensionExercisesProps> = ({
       {!isLoading && (
         <>
           <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-6">
-            Comprehension Exercises
+            {t("title")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {shuffledExercises.map((item: any, index: number) => (
@@ -162,7 +164,7 @@ const ComprehensionExercises: React.FC<ComprehensionExercisesProps> = ({
             className="w-full px-16 py-4 text-black dark:text-white bg-blue-100 dark:bg-blue-900 rounded-lg mt-6"
             onClick={handleCheckAnswers}
           >
-            Check Answers
+            {t("Check Answers")}
           </button>
         </>
       )}

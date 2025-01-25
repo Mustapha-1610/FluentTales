@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import Header from "./Components/Header";
-import DisplayControllers from "./Components/DisplayControllers";
 import { IoLanguage } from "react-icons/io5";
 import { IoIosMoon, IoIosSunny } from "react-icons/io";
+import Header from "./Components/Header";
+import DisplayControllers from "./Components/DisplayControllers";
 import GeneratedContentContainer from "./Components/GeneratedContentContainer";
 
 export default function Page() {

@@ -3,6 +3,7 @@ import { FaWandMagicSparkles } from "react-icons/fa6";
 import { IoMdSettings } from "react-icons/io";
 import FilterModal from "./SelectFiltersModal";
 import { FilterForm } from "../Types/filter-form";
+import { useTranslations } from "next-intl";
 interface Props {
   setStory: (story: string | null) => void;
   setComprehensionExercises: (exercises: any) => void;
@@ -52,6 +53,7 @@ export default function Filters({
       }
     }
   }
+  const t = useTranslations("Filters");
 
   return (
     <>
@@ -59,34 +61,34 @@ export default function Filters({
         <div className="flex flex-wrap gap-5">
           <div className="flex gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900 rounded-xl items-center max-md:w-full">
             <div className="text-gray-700 dark:text-gray-300 font-bold">
-              Language Level:
+              {t("Language Level")}:
             </div>
             <div className="font-medium text-gray-800 dark:text-gray-100 first-letter:capitalize">
-              {filterOptions.languageLevel}
+              {t(filterOptions.languageLevel)}
             </div>
           </div>
           <div className="flex gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900 rounded-xl items-center max-md:w-full">
             <div className="text-gray-700 dark:text-gray-300 font-bold">
-              Grammer Difficulty:
+              {t("Grammar Difficulty")}:
             </div>
             <div className="font-medium text-gray-800 dark:text-gray-100 first-letter:capitalize">
-              {filterOptions.grammarLevel}
+              {t(filterOptions.grammarLevel)}
             </div>
           </div>
           <div className="flex gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900 rounded-xl items-center max-md:w-full">
             <div className="text-gray-700 dark:text-gray-300 font-bold">
-              Story Length:
+              {t("Story Length")}:
             </div>
             <div className="font-medium text-gray-800 dark:text-gray-100 first-letter:capitalize">
-              {filterOptions.generationLength}
+              {t(filterOptions.generationLength)}
             </div>
           </div>
           <div className="flex gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900 rounded-xl items-center max-md:w-full">
             <div className="text-gray-700 dark:text-gray-300 font-bold">
-              Target Audience:
+              {t("Target Audience")}:
             </div>
             <div className="font-medium text-gray-800 dark:text-gray-100 first-letter:capitalize">
-              {filterOptions.targetAudiance}
+              {t(filterOptions.targetAudiance)}
             </div>
           </div>
         </div>
@@ -95,7 +97,7 @@ export default function Filters({
           onClick={() => setIsFilterModalOpen(true)}
         >
           <IoMdSettings size={20} />
-          <div>Edit Filters</div>
+          <div>{t("Edit Filters")}</div>
         </div>
       </div>
 
@@ -112,7 +114,7 @@ export default function Filters({
           onClick={generateContent}
         >
           <FaWandMagicSparkles />
-          <div>Generate</div>
+          <div>{t("Generate")}</div>
         </div>
       </div>
       {isFiltersModalOpen && (

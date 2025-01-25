@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { LuNotebookPen } from "react-icons/lu";
 
 interface Props {
@@ -13,6 +14,8 @@ export default function GenerateExercises({
   contentRegeneration,
   showComprehensionExercises,
 }: Props) {
+  const t = useTranslations("Buttons");
+
   return (
     <button
       onClick={() => (
@@ -32,8 +35,8 @@ export default function GenerateExercises({
           ${comprehenstionExercises ? "text-neutral-900" : "text-neutral-500"}`}
       >
         {comprehenstionExercises && showComprehensionExercises
-          ? "Regenerate Exercises"
-          : "Generate Exercises"}
+          ? t("Regenerate Exercises")
+          : t("Generate Exercises")}
       </div>
     </button>
   );

@@ -1,0 +1,41 @@
+{
+  "Header": {
+    "title": "FluentTales",
+    "about": "حيث تتحول رحلة تعلمك للغة إلى تجربة ممتعة وشخصية. أنشئ قصصًا فريدة تعكس اهتماماتك، استمتع بتمارين تفاعلية، وحسن مهاراتك في القراءة، الاستماع، والكتابة مع ملاحظات فورية من الذكاء الاصطناعي."
+  },
+  "Filters": {
+    "easy": "سهل",
+    "intermediate": "متوسط",
+    "hard": "صعب",
+    "A1": "A1",
+    "A2": "A2",
+    "B1": "B1",
+    "B2": "B2",
+    "short": "قصير",
+    "medium": "متوسط",
+    "long": "طويل",
+    "kids": "الأطفال",
+    "teenagers": "المراهقون",
+    "adults": "البالغون",
+    "general": "عام",
+    "Language Level": "مستوى اللغة",
+    "Text Length": "طول النص",
+    "Grammar Difficulty": "صعوبة القواعد",
+    "Target Audience": "الفئة المستهدفة",
+    "Filter Settings": "إعدادات الفلترة",
+    "Story Length": "طول القصة",
+    "Edit Filters": "تعديل الفلاتر",
+    "Generate": "إنشاء"
+  },
+  "Buttons": {
+    "confirm": "تأكيد",
+    "cancel": "إلغاء",
+    "loading": "جارٍ التحميل",
+    "Regenerate Exercises": "إعادة إنشاء التمارين",
+    "Generate Exercises": "إنشاء التمارين"
+  },
+  "ComprehensionExercises": {
+    "title": "تمارين الفهم",
+    "Check Answers": "تحقق من الإجابات"
+  }
+}

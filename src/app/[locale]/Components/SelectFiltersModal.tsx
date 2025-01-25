@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { FilterForm } from "../Types/filter-form";
+import { useTranslations } from "next-intl";
 
 interface FilterModalProps {
   setIsOpen: (value: boolean) => void;
@@ -13,6 +14,8 @@ export default function FilterModal({
   setFilterOptions,
   filterOptions,
 }: FilterModalProps) {
+  const t = useTranslations("Filters");
+  const translatedButtons = useTranslations("Buttons");
   const [selectedLevel, setSelectedLevel] = useState<"A1" | "A2" | "B1" | "B2">(
     filterOptions.languageLevel
   );
@@ -60,7 +63,7 @@ export default function FilterModal({
               onChange={(e) => setState(e.target.value)}
               className="hidden"
             />
-            <span className="capitalize">{option}</span>
+            <span className="capitalize">{t(option)}</span>
           </label>
         ))}
       </div>
@@ -86,32 +89,32 @@ export default function FilterModal({
         </button>
 
         <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200">
-          Filter Settings
+          {t("Filter Settings")}
         </h2>
 
         <FilterSection
-          title="Language Level"
+          title={t("Language Level")}
           options={["A1", "A2", "B1", "B2"]}
           state={selectedLevel}
           setState={setSelectedLevel}
         />
 
         <FilterSection
-          title="Grammar Difficulty"
+          title={t("Grammar Difficulty")}
           options={["easy", "intermediate", "hard"]}
           state={selectedGrammar}
           setState={setSelectedGrammar}
         />
 
         <FilterSection
-          title="Text Length"
+          title={t("Text Length")}
           options={["short", "medium", "long"]}
           state={selectedLength}
           setState={setSelectedLength}
         />
 
         <FilterSection
-          title="Target Audience"
+          title={t("Target Audience")}
           options={["kids", "teenagers", "general", "adults"]}
           state={selectedAudience}
           setState={setSelectedAudience}
@@ -122,13 +125,13 @@ export default function FilterModal({
             className="px-6 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700"
             onClick={onConfirm}
           >
-            Confirm
+            {translatedButtons("confirm")}
           </button>
           <button
             onClick={() => setIsOpen(false)}
             className="px-6 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
           >
-            Cancel
+            {translatedButtons("cancel")}
           </button>
         </div>
       </div>
