@@ -1,22 +1,41 @@
 "use client";
-import React, { useState } from "react";
-import { IoLanguage } from "react-icons/io5";
+import React, { useState, useEffect } from "react";
 import { IoIosMoon, IoIosSunny } from "react-icons/io";
 import Header from "./Components/Header";
 import DisplayControllers from "./Components/DisplayControllers";
 import GeneratedContentContainer from "./Components/GeneratedContentContainer";
+import { useLocale } from "next-intl";
+
+import LanguageChanger from "./Components/LanguageSelector";
 
 export default function Page() {
   const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    // Retrieve theme preference from localStorage
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme === "dark") {
+      document.documentElement.classList.add("dark");
+      setDarkMode(true);
+    } else {
+      document.documentElement.classList.remove("dark");
+      setDarkMode(false);
+    }
+  }, []);
+
   const toggleTheme = () => {
     const htmlElement = document.documentElement;
     if (darkMode) {
       htmlElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     } else {
       htmlElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     }
     setDarkMode(!darkMode);
   };
+
+  const locale = useLocale();
 
   return (
     <div
@@ -35,10 +54,9 @@ export default function Page() {
         )}
       </button>
 
-      <button className="absolute top-0 right-0 mt-10 mr-24 px-2 py-1 flex items-center gap-2 transition-colors max-md:mt-6 max-md:mr-14 max-md:px-1 max-md:py-0.5">
-        <h1 className="text-base max-md:text-sm">EN</h1>
-        <IoLanguage size={20} color={`${darkMode ? "#b0b0b0" : "#141414"}`} />
-      </button>
+      <div className="absolute top-0 right-0 mt-10 mr-24 max-md:mt-6 max-md:mr-14">
+        <LanguageChanger />
+      </div>
 
       <div className="max-w-[1330px] w-full px-6 mt-32 max-md:mt-20">
         <Header />
