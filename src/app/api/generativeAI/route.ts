@@ -6,13 +6,15 @@ export async function POST(req: NextRequest) {
     const genAI = new GoogleGenerativeAI(
       "AIzaSyBRHhtmff5YjTuxslWbc8wc5Q2UJO9TSYM"
     );
+
     const model = genAI.getGenerativeModel({
       model: "gemini-1.5-flash",
       generationConfig: {
         temperature: 0.9,
-        topP: 0.95,
+        topP: 0.9,
       },
     });
+
     const {
       generationLength,
       grammarLevel,
@@ -20,36 +22,49 @@ export async function POST(req: NextRequest) {
       targetAudience,
       context,
     } = await req.json();
-
     const aiPrompt = `
-Generate a German story that adheres to the following filters:
+### Story and Exercise Generator
+Generate a German story and corresponding exercises based on the following parameters:
 
+#### Parameters:
 - **Context/Theme**: ${context}
-- **Length**: ${generationLength} (Short: 300-600 words, Medium: 700-1000 words, Long: 1100-1400 words)
-- **Language Level**: ${languageLevel}
+- **Story Length**: ${generationLength} (Options: short: 300-700 words, medium: 800-1100 words, long: 2000-2300 words)
+- **Language Level**: ${languageLevel} (e.g., A1, A2, B1)
 - **Target Audience**: ${targetAudience}
-- **Grammar Level**: ${grammarLevel}
+- **Grammar Level**: ${grammarLevel} 
 
-### Requirements:
-1. The story should be **engaging, fluid, and natural**, avoiding a robotic tone or overly simplistic, repetitive sentence structures. 
-2. Use a **vivid and descriptive writing style**, with appropriate transitions between sentences to create a cohesive narrative.
-3. Integrate varied sentence lengths and structures for a more dynamic flow.
-4. Avoid excessive punctuation (e.g., avoid overusing short sentences separated by periods). Ensure the story reads smoothly and professionally.
-5. Incorporate realistic dialogue or descriptions where appropriate to make the story relatable and immersive.
+#### Story Requirements:
+1. **Engaging Narrative**:
+   - Write an engaging and fluid story tailored to the specified audience.
+   - Avoid overly simplistic or robotic language; instead, use dynamic and diverse sentence structures.
+   - Include vivid descriptions, realistic dialogues, and immersive settings.
 
-### Output:
-Return the results in the following **valid JSON** format:
+2. **Professional Style**:
+   - Ensure the tone is professional yet relatable for the target audience.
+   - Avoid repetitive phrases or excessive punctuation.
 
+3. **Creative Variations**:
+   - Alternate between narrative perspectives (e.g., first-person, third-person).
+   - Use diverse genres (e.g., mystery, adventure, humor) and introduce unexpected twists or decisions.
+
+#### Exercise Requirements:
+- Generate 4 exercises that reflect the storys content.
+- Exercises must include comprehension questions with **three answer options** each:
+  - One correct answer (varied in position across questions to avoid patterns).
+  - Two incorrect but plausible answers.
+
+#### Output Format:
+Return the result in **valid JSON** with the following structure:
 \`\`\`json
 {
-  "story": "The generated story text here.",
+  "story": "Generated story text.",
   "exercises": [
     {
-      "question": "Comprehension question 1?",
+      "question": "Comprehension question?",
       "answers": [
-        {"text": "Answer option 1", "is_correct": false},
-        {"text": "Answer option 2", "is_correct": false},
-        {"text": "Answer option 3", "is_correct": false}
+        { "text": "Answer 1", "is_correct": false },
+        { "text": "Answer 2", "is_correct": true },
+        { "text": "Answer 3", "is_correct": false }
       ]
     },
     ...
@@ -57,52 +72,28 @@ Return the results in the following **valid JSON** format:
 }
 \`\`\`
 
-- The exercises must accurately reflect the content of the story, using grammatically correct, level-appropriate language. Ensure questions and answers are **diverse and thoughtful**, promoting comprehension and engagement.
-- Avoid including any additional text, commentary, or formatting outside the JSON structure.
-
-### Additional Notes:
-1. Prioritize **professionalism and creativity** in the story.
-2. Ensure the output matches the specified audience and language level.
-3. Maintain clean formatting and well-structured JSON output.
-4. Only Generate 4 exercises.
-5. The correct answer position must be varied. Specifically:
-   - Each correct answer position (1, 2, 3) should be used at least once.
-   - The same correct answer position should not appear consecutively more than twice.
-   - Ensure that no pattern in answer positions is easily detectable.
-
-### Example:
-For example, if the second option is the correct answer in two consecutive questions, the subsequent questions must not have the second option as correct. This ensures variation in correct answer positions.
-  ### Creative Requirements:
-1. Vary these elements EVERY TIME:
-   - Narrative perspective (first/third/limited omniscient)
-   - Genre/tone (humorous, mysterious, heartwarming, adventurous)
-   - Story structure (linear/non-linear, flashbacks, twist endings)
-   - Character types (different ages, backgrounds, motivations)
-   - Conflict types (internal/external, nature/social/self)
-2. Include UNEXPECTED ELEMENTS:
-   - Unique twist in the middle/end
-   - Unconventional character decisions
-   - Surprising but plausible dialogue
-   - Symbolic elements/metaphors
-
-3. Style Variation:
-   - Alternate between descriptive/action-driven scenes
-   - Mix dialogue/narration ratios
-   - Use different literary devices (foreshadowing, irony)
-`;
+#### Additional Guidelines:
+1. **Exercise Quality**:
+   - Ensure questions and answers are grammatically accurate and level-appropriate.
+   - Avoid predictable patterns in correct answer positions (e.g., no consecutive correct answers in the same position).
+   - Respect word minimum count for each story length parameter as the options suggest
+   
+2. **Clean Formatting**:
+   - Return a well-structured and clean JSON output.
+   - Avoid including any additional text or formatting outside the specified JSON structure.
+    `;
 
     const result = await model.generateContent(aiPrompt);
 
     const response: any = result.response;
     const textResponse = response.candidates[0].content.parts[0].text;
 
-    // Clean the response string to remove unwanted backticks or extra text
+    // Clean and parse the response
     const cleanedTextResponse = textResponse
-      .replace(/```json/g, "") // Remove opening backticks with 'json'
-      .replace(/```/g, "") // Remove closing backticks
-      .trim(); // Remove leading and trailing spaces
+      .replace(/```json/g, "")
+      .replace(/```/g, "")
+      .trim();
 
-    // Parse the cleaned string into a JSON object
     const jsonResponse = JSON.parse(cleanedTextResponse);
 
     return NextResponse.json({ success: true, data: jsonResponse });
