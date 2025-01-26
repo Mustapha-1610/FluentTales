@@ -6,8 +6,13 @@ export async function POST(req: NextRequest) {
     const genAI = new GoogleGenerativeAI(
       "AIzaSyBRHhtmff5YjTuxslWbc8wc5Q2UJO9TSYM"
     );
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
-
+    const model = genAI.getGenerativeModel({
+      model: "gemini-1.5-flash",
+      generationConfig: {
+        temperature: 0.9,
+        topP: 0.95,
+      },
+    });
     const {
       generationLength,
       grammarLevel,
@@ -67,7 +72,23 @@ Return the results in the following **valid JSON** format:
 
 ### Example:
 For example, if the second option is the correct answer in two consecutive questions, the subsequent questions must not have the second option as correct. This ensures variation in correct answer positions.
+  ### Creative Requirements:
+1. Vary these elements EVERY TIME:
+   - Narrative perspective (first/third/limited omniscient)
+   - Genre/tone (humorous, mysterious, heartwarming, adventurous)
+   - Story structure (linear/non-linear, flashbacks, twist endings)
+   - Character types (different ages, backgrounds, motivations)
+   - Conflict types (internal/external, nature/social/self)
+2. Include UNEXPECTED ELEMENTS:
+   - Unique twist in the middle/end
+   - Unconventional character decisions
+   - Surprising but plausible dialogue
+   - Symbolic elements/metaphors
 
+3. Style Variation:
+   - Alternate between descriptive/action-driven scenes
+   - Mix dialogue/narration ratios
+   - Use different literary devices (foreshadowing, irony)
 `;
 
     const result = await model.generateContent(aiPrompt);

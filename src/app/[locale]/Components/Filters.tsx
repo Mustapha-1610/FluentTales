@@ -9,12 +9,14 @@ interface Props {
   setComprehensionExercises: (exercises: any) => void;
   setLoading: (loading: boolean) => void;
   setShowComprehensionExercises: (show: boolean) => void;
+  isLoading: boolean;
 }
 export default function Filters({
   setComprehensionExercises,
   setStory,
   setLoading,
   setShowComprehensionExercises,
+  isLoading,
 }: Props) {
   const [isFiltersModalOpen, setIsFilterModalOpen] = useState<boolean>(false);
   const [filterOptions, setFilterOptions] = useState<FilterForm>({
@@ -109,13 +111,16 @@ export default function Filters({
           placeholder={t("Enter Context")}
           className="flex-grow px-4 py-3 bg-gray-50 dark:bg-[#111827] text-gray-800 dark:text-gray-100 border border-solid rounded-xl shadow-sm border-gray-300 dark:border-gray-600"
         />
-        <div
-          className="flex gap-3.5 px-4 mr-2 py-3 text-center text-gray-800  whitespace-nowrap bg-gray-200  rounded-xl items-center ml-4 cursor-pointer "
+        <button
+          className={`flex gap-3.5 px-4 mr-2 py-3 text-center text-gray-800  whitespace-nowrap bg-gray-200 ${
+            isLoading ? "cursor-not-allowed" : "cursor-pointer"
+          }  rounded-xl items-center ml-4 max-w-32`}
+          disabled={isLoading}
           onClick={generateContent}
         >
           <FaWandMagicSparkles />
           <div>{t("Generate")}</div>
-        </div>
+        </button>
       </div>
       {isFiltersModalOpen && (
         <FilterModal
