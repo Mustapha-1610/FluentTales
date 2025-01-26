@@ -7,10 +7,6 @@ interface VideoData {
   creatorUrl: string;
 }
 
-interface Props {
-  videos: VideoData[];
-}
-
 const VideoCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
 

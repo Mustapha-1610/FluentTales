@@ -25,7 +25,9 @@
     "Filter Settings": "إعدادات الفلترة",
     "Story Length": "طول القصة",
     "Edit Filters": "تعديل الفلاتر",
-    "Generate": "إنشاء"
+    "Generate": "إنشاء",
+
+    "Enter Context": "أدخل السياق أو الفكرة الرئيسية لقصتك..."
   },
   "Buttons": {
     "confirm": "تأكيد",
@@ -37,5 +39,11 @@
   "ComprehensionExercises": {
     "title": "تمارين الفهم",
     "Check Answers": "تحقق من الإجابات"
+  },
+
+  "DisplayControllers": {
+    "Comprehension": "الفهم",
+    "Writing": "الكتابة",
+    "Grammar": "القواعد"
   }
 }

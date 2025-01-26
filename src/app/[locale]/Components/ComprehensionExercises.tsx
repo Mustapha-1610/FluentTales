@@ -135,7 +135,7 @@ const ComprehensionExercises: React.FC<ComprehensionExercisesProps> = ({
   const t = useTranslations("ComprehensionExercises");
 
   return (
-    <div className="relative  dark:bg-gray-800 rounded-xl shadow-sm p-5">
+    <div className="relative  dark:bg-gray-800 rounded-xl  p-5">
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-800 bg-opacity-75 rounded-xl">
           <PulseLoader color="#4b5563" size={10} />

@@ -25,7 +25,8 @@
     "Filter Settings": "Filter Settings",
     "Story Length": "Story Length",
     "Edit Filters": "Edit Filters",
-    "Generate": "Generate"
+    "Generate": "Generate",
+    "Enter Context": "Enter context or theme for your story..."
   },
   "Buttons": {
     "confirm": "Confirm",
@@ -37,5 +38,10 @@
   "ComprehensionExercises": {
     "title": "Comprehension Exercises",
     "Check Answers": "Check Answers"
+  },
+  "DisplayControllers": {
+    "Comprehension": "Comprehension",
+    "Writing": "Writing",
+    "Grammar": "Grammar"
   }
 }

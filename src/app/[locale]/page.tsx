@@ -4,7 +4,6 @@ import { IoIosMoon, IoIosSunny } from "react-icons/io";
 import Header from "./Components/Header";
 import DisplayControllers from "./Components/DisplayControllers";
 import GeneratedContentContainer from "./Components/GeneratedContentContainer";
-import { useLocale } from "next-intl";
 
 import LanguageChanger from "./Components/LanguageSelector";
 
@@ -12,7 +11,6 @@ export default function Page() {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    // Retrieve theme preference from localStorage
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme === "dark") {
       document.documentElement.classList.add("dark");
@@ -34,8 +32,6 @@ export default function Page() {
     }
     setDarkMode(!darkMode);
   };
-
-  const locale = useLocale();
 
   return (
     <div

@@ -27,10 +27,10 @@ export default function CorrectionModal() {
             <div className="flex flex-col justify-center p-4 mt-3 text-base text-gray-700 bg-blue-50 rounded-lg max-md:max-w-full">
               <div className="pt-1 pb-7 bg-black bg-opacity-0 max-md:pr-5 max-md:max-w-full">
                 Your text demonstrates good understanding of basic concepts.
-                However, there's room for improvement in sentence structure and
+                However, theres room for improvement in sentence structure and
                 vocabulary usage. Consider using more varied expressions to
                 enhance your writing. Your text demonstrates good understanding
-                of basic concepts. However, there's room for improvement in
+                of basic concepts. However, theres room for improvement in
                 sentence structure and vocabulary usage. Consider using more
                 varied expressions to enhance your writing.{" "}
               </div>

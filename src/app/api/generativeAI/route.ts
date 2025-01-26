@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   try {
     const genAI = new GoogleGenerativeAI(
       "AIzaSyBRHhtmff5YjTuxslWbc8wc5Q2UJO9TSYM"
     );
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+
     const {
       generationLength,
       grammarLevel,
@@ -69,11 +70,9 @@ For example, if the second option is the correct answer in two consecutive quest
 
 `;
 
-    const result = await model.generateContent(aiPrompt, {
-      temperature: 0.7,
-      topP: 0.9,
-    });
-    const response = await result.response;
+    const result = await model.generateContent(aiPrompt);
+
+    const response: any = result.response;
     const textResponse = response.candidates[0].content.parts[0].text;
 
     // Clean the response string to remove unwanted backticks or extra text

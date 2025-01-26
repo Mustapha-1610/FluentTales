@@ -25,7 +25,9 @@
     "Filter Settings": "Paramètres des filtres",
     "Story Length": "Longueur de l'histoire",
     "Edit Filters": "Modifier les filtres",
-    "Generate": "Générer"
+    "Generate": "Générer",
+
+    "Enter Context": "Entrez le contexte ou le thème de votre histoire..."
   },
   "Buttons": {
     "confirm": "Confirmer",
@@ -37,5 +39,11 @@
   "ComprehensionExercises": {
     "title": "Exercices de compréhension",
     "Check Answers": "Vérifier les réponses"
+  },
+
+  "DisplayControllers": {
+    "Comprehension": "Compréhension",
+    "Writing": "Écriture",
+    "Grammar": "Grammaire"
   }
 }
