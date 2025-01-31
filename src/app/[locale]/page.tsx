@@ -6,9 +6,13 @@ import DisplayControllers from "./Components/DisplayControllers";
 import GeneratedContentContainer from "./Components/GeneratedContentContainer";
 
 import LanguageChanger from "./Components/LanguageSelector";
+import GrammarExercisesContainer from "./Components/GrammarExercisesContainer";
 
 export default function Page() {
   const [darkMode, setDarkMode] = useState(false);
+  const [selectedButton, setSelectedButton] = useState<
+    "Comprehension" | "Grammar" | "Writing"
+  >("Comprehension");
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
@@ -57,8 +61,15 @@ export default function Page() {
       <div className="max-w-[1330px] w-full px-6 mt-32 max-md:mt-20">
         <Header />
         <div className="flex flex-col rounded-none mt-44 mb-16 max-md:mt-24 max-md:mb-8">
-          <DisplayControllers />
-          <GeneratedContentContainer />
+          <DisplayControllers
+            selectedButton={selectedButton}
+            setSelectedButton={setSelectedButton}
+          />
+          {selectedButton === "Comprehension" ? (
+            <GeneratedContentContainer />
+          ) : (
+            selectedButton === "Grammar" && <GrammarExercisesContainer />
+          )}
         </div>
       </div>
     </div>

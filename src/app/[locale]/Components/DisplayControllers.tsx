@@ -3,10 +3,18 @@ import { FaBook, FaRegKeyboard } from "react-icons/fa6";
 import { TbTextGrammar } from "react-icons/tb";
 import { useTranslations } from "use-intl";
 
-export default function DisplayControllers() {
-  const [selectedButton, setSelectedButton] = useState<string>("Comprehension");
+interface Props {
+  setSelectedButton: (value: "Comprehension" | "Grammar" | "Writing") => void;
+  selectedButton: "Comprehension" | "Grammar" | "Writing";
+}
 
-  const handleButtonClick = (buttonName: string) => {
+export default function DisplayControllers({
+  selectedButton,
+  setSelectedButton,
+}: Props) {
+  const handleButtonClick = (
+    buttonName: "Comprehension" | "Grammar" | "Writing"
+  ) => {
     setSelectedButton(buttonName);
   };
 
@@ -34,18 +42,18 @@ export default function DisplayControllers() {
           <div>{t("Comprehension")}</div>
         </div>
         <div
-          className={getButtonStyles("Writing")}
-          onClick={() => handleButtonClick("Writing")}
-        >
-          <FaRegKeyboard size={23} />
-          <div>{t("Writing")}</div>
-        </div>
-        <div
           className={getButtonStyles("Grammar")}
           onClick={() => handleButtonClick("Grammar")}
         >
           <TbTextGrammar size={23} />
           <div>{t("Grammar")}</div>
+        </div>
+        <div
+          className={getButtonStyles("Writing")}
+          onClick={() => handleButtonClick("Writing")}
+        >
+          <FaRegKeyboard size={23} />
+          <div>{t("Writing")}</div>
         </div>
       </div>
     </div>
