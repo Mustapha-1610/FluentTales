@@ -1,11 +1,15 @@
+import { useState } from "react";
 import VideoCarousel from "./CarouselTest";
+import GrammarExercise, { ExerciseData } from "./GrammarExercises";
 import GrammarFilter from "./GrammarFilters";
 
 export default function GrammarExercisesContainer() {
+  const [exerciseData, setExerciseData] = useState<ExerciseData | null>(null);
+
   return (
     <>
-      <GrammarFilter />
-      <VideoCarousel course="Artikel (der, die, das)" level="A1" />
+      <GrammarFilter setExerciseData={setExerciseData} />
+      {exerciseData && <GrammarExercise exerciseData={exerciseData} />}
     </>
   );
 }
