@@ -27,7 +27,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <NextIntlClientProvider messages={messages}>
-        <body className="overflow-x-hidden">{children}</body>
+        <body className=" overflow-auto">{children}</body>
       </NextIntlClientProvider>
     </html>
   );

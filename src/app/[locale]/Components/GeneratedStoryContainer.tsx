@@ -121,10 +121,10 @@ const GeneratedStory: React.FC<Props> = ({ story, isLoading }) => {
   }, []);
 
   return (
-    <>
+    <div>
       <div
         ref={containerRef}
-        className="relative self-start px-4 pt-3 pb-4 mt-4 mr-6 text-lg leading-6 flex-grow text-gray-800 dark:bg-gray-600 dark:text-gray-200 rounded-xl border border-solid bg-gray-50 dark:border-gray-500 border-gray-300"
+        className="relative self-start px-4 pt-3 pb-4 mt-4 mr-6 text-lg max-md:text-base leading-6 flex-grow text-gray-800 dark:bg-gray-600 dark:text-gray-200 rounded-xl border border-solid bg-gray-50 dark:border-gray-500 border-gray-300"
       >
         {isLoading && (
           <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 rounded-xl">
@@ -182,7 +182,7 @@ const GeneratedStory: React.FC<Props> = ({ story, isLoading }) => {
           )}
         </div>
       )}
-    </>
+    </div>
   );
 };
 
