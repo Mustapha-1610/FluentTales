@@ -3,9 +3,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export async function POST(req: NextRequest) {
   try {
-    const genAI = new GoogleGenerativeAI(
-      "AIzaSyBRHhtmff5YjTuxslWbc8wc5Q2UJO9TSYM"
-    );
+    const genAI = new GoogleGenerativeAI(process.env.GEMINIAPIKEY!);
 
     const { text, targetLanguage } = await req.json();
 
@@ -55,7 +53,7 @@ Translate the following German text into the specified target language. Then, pr
 `;
 
     const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-flash",
+      model: String(process.env.GEMINIMODEL!),
       generationConfig: {
         temperature: 0.8,
         topP: 0.9,

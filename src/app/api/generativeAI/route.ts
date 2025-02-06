@@ -3,12 +3,10 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export async function POST(req: NextRequest) {
   try {
-    const genAI = new GoogleGenerativeAI(
-      "AIzaSyBRHhtmff5YjTuxslWbc8wc5Q2UJO9TSYM"
-    );
+    const genAI = new GoogleGenerativeAI(process.env.GEMINIAPIKEY!);
 
     const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-flash",
+      model: String(process.env.GEMINIMODEL!),
       generationConfig: {
         temperature: 0.9,
         topP: 0.9,
