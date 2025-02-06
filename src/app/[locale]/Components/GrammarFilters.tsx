@@ -1,72 +1,14 @@
 import { useState } from "react";
 import { useLocale } from "next-intl";
 import { ExerciseData } from "./GrammarExercises";
-
-const grammarTopicsByLevel = {
-  A1: [
-    "Artikel",
-    "Personalpronomen",
-    "Präsens",
-    "Negation",
-    "Wortstellung",
-    "Modalverben",
-    "Einfache Präpositionen",
-    "Possessivpronomen",
-    "Fragewörter",
-    "Zahlen und Uhrzeit",
-    "Trennbare Verben",
-    "Imperativ",
-    "Reflexive Verben",
-  ],
-  A2: [
-    "Vergangenheit",
-    "Dativ und Akkusativ",
-    "Komparativ und Superlativ",
-    "Trennbare und untrennbare Verben",
-    "Weitere Modalverben",
-    "Nebensätze",
-    "Reflexive Verben mit Dativ",
-    "Adjektivdeklination",
-    "Relativsätze",
-    "Genitiv",
-    "Indirekte Fragen",
-    "Adverbien",
-  ],
-  B1: [
-    "Vergangenheit",
-    "Plusquamperfekt",
-    "Passiv",
-    "Relativsätze mit Präpositionen",
-    "Konjunktiv II",
-    "Indirekte Rede",
-    "Erweiterte Wortstellung",
-    "Präpositionen mit Genitiv",
-    "Modalverben im Präteritum",
-    "Participles as Adjectives",
-    "Satzgefüge und komplexe Satzstrukturen",
-  ],
-  B2: [
-    "Konjunktiv I",
-    "Erweiterter Konjunktiv II",
-    "Erweitertes Passiv",
-    "Infinitivsätze",
-    "Partizipialsätze",
-    "Nominalisierung",
-    "Präpositionen mit speziellen Bedeutungen",
-    "Erweiterte Adjektivendungen in komplexen Sätzen",
-    "Verben mit festen Präpositionen",
-    "Idiomatiche Ausdrücke und Redewendungen",
-    "Stilistische Mittel",
-    "Formale und informelle Sprache",
-  ],
-};
+import { grammarCourses } from "@/app/utils/grammarCourses";
 
 interface Props {
   setExerciseData: (exerciseData: ExerciseData | null) => void;
 }
 export default function GrammarFilter({ setExerciseData }: Props) {
   const [selectedLevel, setSelectedLevel] =
-    useState<keyof typeof grammarTopicsByLevel>("A1");
+    useState<keyof typeof grammarCourses>("A1");
   const [selectedTopic, setSelectedTopic] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -101,23 +43,21 @@ export default function GrammarFilter({ setExerciseData }: Props) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center mb-12 mt-12">
-      <div className="flex gap-4 p-4 bg-white dark:bg-gray-900 rounded-2xl shadow-lg">
-        <div className="flex flex-col">
+    <div className="flex flex-col items-center justify-center mb-12 mt-12 w-full">
+      <div className="flex flex-col md:flex-row gap-4 p-4 bg-white dark:bg-gray-900 rounded-2xl shadow-lg w-full max-w-lg">
+        <div className="flex flex-col w-full md:w-auto">
           <label className="text-gray-700 dark:text-gray-300 font-semibold mb-1">
             Sprachlevel
           </label>
           <select
-            className="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 border-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 border-none focus:ring-2 focus:ring-blue-500"
             value={selectedLevel}
             onChange={(e) => {
-              setSelectedLevel(
-                e.target.value as keyof typeof grammarTopicsByLevel
-              );
+              setSelectedLevel(e.target.value as keyof typeof grammarCourses);
               setSelectedTopic("");
             }}
           >
-            {Object.keys(grammarTopicsByLevel).map((level) => (
+            {Object.keys(grammarCourses).map((level) => (
               <option key={level} value={level}>
                 {level}
               </option>
@@ -125,36 +65,44 @@ export default function GrammarFilter({ setExerciseData }: Props) {
           </select>
         </div>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full md:w-auto">
           <label className="text-gray-700 dark:text-gray-300 font-semibold mb-1">
             Grammatikthema
           </label>
           <select
-            className="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 border-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 border-none focus:ring-2 focus:ring-blue-500"
             value={selectedTopic}
             onChange={(e) => setSelectedTopic(e.target.value)}
           >
             <option value="">Wähle ein Thema</option>
-            {grammarTopicsByLevel[selectedLevel].map((topic) => (
+            {grammarCourses[selectedLevel].map((topic) => (
               <option key={topic} value={topic}>
                 {topic}
               </option>
             ))}
           </select>
         </div>
-        <button
-          onClick={generateExercises}
-          className={`mt-6 px-4 rounded-lg font-semibold ${
-            selectedTopic && !isLoading
-              ? "bg-gray-200 dark:text-gray-100 text-gray-800 dark:bg-[#374151] cursor-pointer"
-              : "bg-gray-100 text-gray-500 dark:text-white dark:bg-[#1f2937] cursor-not-allowed"
-          }`}
-          disabled={!selectedTopic || isLoading}
-        >
-          <span>{isLoading ? "Generating..." : "Generate Exercises"}</span>
-        </button>
+        <div className="flex items-center  mt-7 ">
+          {" "}
+          {/* Added flex items-center and margin adjustment */}
+          <button
+            onClick={generateExercises}
+            className={`px-4 py-0.5 rounded-lg font-semibold whitespace-nowrap w-full md:w-auto flex items-center justify-center h-full ${
+              // Added h-full
+              selectedTopic && !isLoading
+                ? "bg-gray-200 dark:text-gray-100 text-gray-800 dark:bg-[#374151] cursor-pointer"
+                : "bg-gray-100 text-gray-500 dark:text-white dark:bg-[#1f2937] cursor-not-allowed"
+            }`}
+            disabled={!selectedTopic || isLoading}
+          >
+            <span className="text-sm text-center md:text-left">
+              {isLoading ? "Generating..." : "Generate Exercises"}
+            </span>
+          </button>
+        </div>
       </div>
-      {error && <p className="text-red-500 mt-4">{error}</p>}
+      {error && <p className="text-red-500 mt-4 text-center">{error}</p>}{" "}
+      {/* Centered error message */}
     </div>
   );
 }

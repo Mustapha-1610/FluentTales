@@ -113,9 +113,13 @@ export default function Filters({
         />
         <button
           className={`flex gap-3.5 px-4 mr-2 py-3 text-center text-gray-800  whitespace-nowrap bg-gray-200 ${
-            isLoading ? "cursor-not-allowed" : "cursor-pointer"
+            isLoading || storyContext === "" || storyContext.length < 10
+              ? "cursor-not-allowed "
+              : "cursor-pointer"
           }  rounded-xl items-center ml-4 max-w-32 min-w-28 justify-center  `}
-          disabled={isLoading}
+          disabled={
+            isLoading || storyContext === "" || storyContext.length < 10
+          }
           onClick={generateContent}
         >
           <FaWandMagicSparkles />

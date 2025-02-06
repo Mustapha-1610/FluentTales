@@ -148,7 +148,7 @@ const GeneratedStory: React.FC<Props> = ({ story, isLoading }) => {
       </div>
       {popupPosition && (
         <div
-          className="absolute z-50 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-500 text-sm text-black dark:text-white"
+          className="absolute z-50 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-500 text-base text-black dark:text-white"
           style={{
             top: popupPosition.y + 20,
             left: popupPosition.x,

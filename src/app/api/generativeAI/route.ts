@@ -26,7 +26,7 @@ Generate a German story and corresponding exercises based on the following param
 
 #### Parameters:
 - **Context/Theme**: ${context}
-- **Story Length**: ${generationLength} (Options: short: 300-700 words, medium: 800-1100 words, long: 2000-2300 words)
+- **Story Length**: ${generationLength} (Options: short: 300-600 words, medium: 700-1000 words, long: 1300-1600 words)
 - **Language Level**: ${languageLevel} (e.g., A1, A2, B1)
 - **Target Audience**: ${targetAudience}
 - **Grammar Level**: ${grammarLevel} 

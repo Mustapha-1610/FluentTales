@@ -52,7 +52,6 @@ export default function GeneratedContentContainer() {
             contentRegeneration={regenerateExecersises}
             showComprehensionExercises={showComprehensionExercises}
           />
-          <CopyButton />
         </div>
       </div>
       {showComprehensionExercises && (
