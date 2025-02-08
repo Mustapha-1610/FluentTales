@@ -2,8 +2,8 @@ import { useState } from "react";
 import Filters from "./Filters";
 import GeneratedStory from "./GeneratedStoryContainer";
 import ComprehensionExercises from "./ComprehensionExercises";
-import CopyButton from "../FunctionalityButtonsComponents/CopyButton";
 import GenerateExercises from "../FunctionalityButtonsComponents/GenerateExercises";
+import TrueFalseExercises from "./TrueFalseExercises";
 
 export default function GeneratedContentContainer() {
   const [story, setStory] = useState<string | null>(null);
@@ -13,9 +13,16 @@ export default function GeneratedContentContainer() {
     useState<boolean>(false);
   const [loadingComprehensionExercises, setLoadingComprehensionExercises] =
     useState<boolean>(false);
+  const [true_false_exercises, setTrue_False_Exercises] = useState<any[]>([]);
+  const [loadingTrue_False_Exercises, setLoading_True_False_Exercises] =
+    useState<boolean>(false);
+  const [show_true_false_exercises, setShow_True_False_Exercises] =
+    useState<boolean>(false);
+
   async function regenerateExecersises() {
     try {
       setLoadingComprehensionExercises(true);
+      setLoading_True_False_Exercises(true);
       const response = await fetch("/api/regenerateExercise", {
         method: "POST",
         body: JSON.stringify({
@@ -29,6 +36,7 @@ export default function GeneratedContentContainer() {
       console.error(error);
     } finally {
       setLoadingComprehensionExercises(false);
+      setLoading_True_False_Exercises(false);
     }
   }
   return (
@@ -42,6 +50,8 @@ export default function GeneratedContentContainer() {
           setComprehensionExercises={setComprehensionExercises}
           setLoading={setLoading}
           setShowComprehensionExercises={setShowComprehensionExercises}
+          setShow_True_False_Exercises={setShow_True_False_Exercises}
+          setTrue_False_Exercises={setTrue_False_Exercises}
         />
         <GeneratedStory story={story} isLoading={loading} />
 
@@ -51,6 +61,7 @@ export default function GeneratedContentContainer() {
             setShowComprehensionExercises={setShowComprehensionExercises}
             contentRegeneration={regenerateExecersises}
             showComprehensionExercises={showComprehensionExercises}
+            setShow_True_False_Exercises={setShow_True_False_Exercises}
           />
         </div>
       </div>
@@ -60,6 +71,13 @@ export default function GeneratedContentContainer() {
           isLoading={loadingComprehensionExercises}
         />
       )}
+      {show_true_false_exercises && (
+        <TrueFalseExercises
+          true_false_exercises={true_false_exercises}
+          isLoading={loadingTrue_False_Exercises}
+        />
+      )}
+      {}
     </>
   );
 }

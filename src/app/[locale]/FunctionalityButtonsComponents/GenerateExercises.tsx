@@ -6,6 +6,7 @@ interface Props {
   setShowComprehensionExercises: (show: boolean) => void;
   showComprehensionExercises: boolean;
   contentRegeneration: () => void;
+  setShow_True_False_Exercises: (value: boolean) => void;
 }
 
 export default function GenerateExercises({
@@ -13,13 +14,16 @@ export default function GenerateExercises({
   setShowComprehensionExercises,
   contentRegeneration,
   showComprehensionExercises,
+  setShow_True_False_Exercises,
 }: Props) {
   const t = useTranslations("Buttons");
 
   return (
     <button
       onClick={() => (
-        comprehenstionExercises && setShowComprehensionExercises(true),
+        comprehenstionExercises &&
+          (setShowComprehensionExercises(true),
+          setShow_True_False_Exercises(true)),
         showComprehensionExercises && contentRegeneration()
       )}
       className={`flex items-center gap-2.5 px-4 py-3 rounded-lg 

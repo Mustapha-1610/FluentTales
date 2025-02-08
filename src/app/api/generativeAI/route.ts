@@ -46,17 +46,19 @@ Generate a German story and corresponding exercises based on the following param
    - Use diverse genres (e.g., mystery, adventure, humor) and introduce unexpected twists or decisions.
 
 #### Exercise Requirements:
-- Generate 4 exercises that reflect the storys content.
-- Exercises must include comprehension questions with **three answer options** each:
-  - One correct answer (varied in position across questions to avoid patterns).
-  - Two incorrect but plausible answers.
+- Generate **4 comprehension questions** that reflect the story's content.
+  - Each question must include **three answer options**:
+    - One correct answer (varied in position across questions to avoid patterns).
+    - Two incorrect but plausible answers.
+- Generate **4 True/False questions** based on the story.
+  - Each question must be a statement that is either true or false based on the story's content.
 
 #### Output Format:
 Return the result in **valid JSON** with the following structure:
 \`\`\`json
 {
   "story": "Generated story text.",
-  "exercises": [
+  "comprehension_exercises": [
     {
       "question": "Comprehension question?",
       "answers": [
@@ -64,6 +66,13 @@ Return the result in **valid JSON** with the following structure:
         { "text": "Answer 2", "is_correct": true },
         { "text": "Answer 3", "is_correct": false }
       ]
+    },
+    ...
+  ],
+  "true_false_exercises": [
+    {
+      "statement": "Statement based on the story.",
+      "is_true": true
     },
     ...
   ]
@@ -74,12 +83,12 @@ Return the result in **valid JSON** with the following structure:
 1. **Exercise Quality**:
    - Ensure questions and answers are grammatically accurate and level-appropriate.
    - Avoid predictable patterns in correct answer positions (e.g., no consecutive correct answers in the same position).
-   - Respect word minimum count for each story length parameter as the options suggest
+   - Respect word minimum count for each story length parameter as the options suggest.
    
 2. **Clean Formatting**:
    - Return a well-structured and clean JSON output.
    - Avoid including any additional text or formatting outside the specified JSON structure.
-    `;
+`;
 
     const result = await model.generateContent(aiPrompt);
 

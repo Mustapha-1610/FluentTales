@@ -10,6 +10,8 @@ interface Props {
   setLoading: (loading: boolean) => void;
   setShowComprehensionExercises: (show: boolean) => void;
   isLoading: boolean;
+  setShow_True_False_Exercises: (value: boolean) => void;
+  setTrue_False_Exercises: (value: any[]) => void;
 }
 export default function Filters({
   setComprehensionExercises,
@@ -17,6 +19,8 @@ export default function Filters({
   setLoading,
   setShowComprehensionExercises,
   isLoading,
+  setShow_True_False_Exercises,
+  setTrue_False_Exercises,
 }: Props) {
   const [isFiltersModalOpen, setIsFilterModalOpen] = useState<boolean>(false);
   const [filterOptions, setFilterOptions] = useState<FilterForm>({
@@ -33,6 +37,7 @@ export default function Filters({
     ) {
       try {
         setComprehensionExercises(null);
+        setShow_True_False_Exercises(false);
         setShowComprehensionExercises(false);
         setLoading(true);
         const response = await fetch("/api/generativeAI", {
@@ -47,7 +52,8 @@ export default function Filters({
         });
         const res = await response.json();
         setStory(res.data.story);
-        setComprehensionExercises(res.data.exercises);
+        setComprehensionExercises(res.data.comprehension_exercises);
+        setTrue_False_Exercises(res.data.true_false_exercises);
       } catch (error) {
         console.error(error);
       } finally {

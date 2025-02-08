@@ -18,26 +18,41 @@ export async function POST(req: NextRequest) {
     // Optionally, you can add an "exerciseLength" parameter if needed.
 
     const aiPrompt = `
-### German Grammar Exercise Generator
-Generate a JSON object with the following structure (and no additional text):
-
-{
-  "story": "A coherent paragraph with several ___ placeholders indicating blanks for a grammar exercise.",
-  "blanks": [
+    ### German Grammar Exercise Generator
+    Generate a JSON object with the following structure (and no additional text):
+    
     {
-      "options": [
-        { "text": "option1", "is_correct": true or false, "explanation": "Explanation text in ${locale}" },
-        { "text": "option2", "is_correct": true or false, "explanation": "Explanation text in ${locale}" },
-        { "text": "option3", "is_correct": true or false, "explanation": "Explanation text in ${locale}" }
-      ],
-      "explanation": "A generic explanation for why the correct answer is correct, written in ${locale}."
-    },
-    ... (include at least 6 such blanks)
-  ]
-}
-
-Generate a German grammar exercise for learners at level ${level} on the topic "${course}". **Important:** Use only vocabulary, grammar structures, and expressions that are appropriate and common for level ${level}. The exercise must use simple, everyday words for beginners if ${level} is A1 (or corresponding vocabulary for other levels) and ensure that the examples and dropdown options reflect this level-appropriate language. The exercise should be longer than the usual example (with at least 6 blanks), present a realistic and engaging context, and all explanation texts must be in the language corresponding to the locale: ${locale}. Return valid JSON only.
-`;
+      "story": "A coherent paragraph (or multiple paragraphs) that is at least two lines longer than the previous example, containing several ___ placeholders where blanks should be filled in for a grammar exercise. The text must maintain a consistent context and storyline from beginning to end, without abrupt topic changes.",
+      "blanks": [
+        {
+          "options": [
+            { "text": "option1", "is_correct": true or false, "explanation": "A detailed explanation in ${locale} explaining why this option is correct, including grammatical reasoning and context-specific details." },
+            { "text": "option2", "is_correct": true or false, "explanation": "A detailed explanation in ${locale}." },
+            { "text": "option3", "is_correct": true or false, "explanation": "A detailed explanation in ${locale}." }
+            // Optionally include more options if it makes sense for the exercise.
+          ],
+          "explanation": "A comprehensive explanation in ${locale} describing the grammatical rule, the context of the sentence, and why the correct option is correct compared to the incorrect ones."
+        }
+        // Generate at least 8 such blank objects if the context allows, or more if it fits naturally.
+      ]
+    }
+    
+    Generate a German grammar exercise for learners at level ${level} on the topic "${course}". **Important:** 
+    - Use only vocabulary, grammar structures, and expressions that are appropriate and common for level ${level}.
+    - Ensure the exercise text is engaging and at least two lines longer than previous examples.
+    - Maintain a consistent context throughout the entire generation.
+    - **Handling Separable Verbs:**  
+      If the exercise involves a separable verb (e.g., "einkaufen"), split the verb into two distinct blanks.  
+      *Example:*  
+      For "einkaufen":  
+      - The first blank should expect the core part, e.g., "kaufen".  
+      - The second blank should expect the separable prefix, e.g., "ein".  
+      Ensure that no single blank contains both parts, and that the answer options and explanations reflect this split precisely.
+    - Each blank's answer options should include detailed, specific explanations that reference the relevant grammatical rule and context.
+    - You may deviate from the exact example structure if it benefits the overall context, but follow the overall JSON format.
+    
+    Return valid JSON only.
+    `;
 
     const result = await model.generateContent(aiPrompt);
     const response: any = result.response;
