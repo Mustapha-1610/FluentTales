@@ -29,27 +29,22 @@ export async function POST(req: NextRequest) {
             { "text": "option1", "is_correct": true or false, "explanation": "A detailed explanation in ${locale} explaining why this option is correct, including grammatical reasoning and context-specific details." },
             { "text": "option2", "is_correct": true or false, "explanation": "A detailed explanation in ${locale}." },
             { "text": "option3", "is_correct": true or false, "explanation": "A detailed explanation in ${locale}." }
-            // Optionally include more options if it makes sense for the exercise.
+            // Optionally include more options if it makes sense for the exercise
           ],
           "explanation": "A comprehensive explanation in ${locale} describing the grammatical rule, the context of the sentence, and why the correct option is correct compared to the incorrect ones."
-        }
-        // Generate at least 8 such blank objects if the context allows, or more if it fits naturally.
+        },
+        // Include at least 8 such blank objects if the context allows,
+        // or more if it fits naturally in the generated text.
       ]
     }
     
     Generate a German grammar exercise for learners at level ${level} on the topic "${course}". **Important:** 
     - Use only vocabulary, grammar structures, and expressions that are appropriate and common for level ${level}.
-    - Ensure the exercise text is engaging and at least two lines longer than previous examples.
+    - Ensure the exercise text is engaging and long enough (at least two lines longer than previous examples).
     - Maintain a consistent context throughout the entire generation.
-    - **Handling Separable Verbs:**  
-      If the exercise involves a separable verb (e.g., "einkaufen"), split the verb into two distinct blanks.  
-      *Example:*  
-      For "einkaufen":  
-      - The first blank should expect the core part, e.g., "kaufen".  
-      - The second blank should expect the separable prefix, e.g., "ein".  
-      Ensure that no single blank contains both parts, and that the answer options and explanations reflect this split precisely.
-    - Each blank's answer options should include detailed, specific explanations that reference the relevant grammatical rule and context.
-    - You may deviate from the exact example structure if it benefits the overall context, but follow the overall JSON format.
+    - If the exercise involves separable verbs (for example, "einkaufen"), then split the verb into two separate blanks (one for the prefix and one for the main verb) at the appropriate positions in the sentence for example first blank has kaufen and second one has ein like in trennbare verbs.
+    - Each blank's answer options should include detailed, specific explanations that not only state which option is correct but also explain why it is correct in context, referencing the relevant grammatical rule.
+    - You may deviate from the exact example structure if it benefits the context; be flexible while following the overall JSON format.
     
     Return valid JSON only.
     `;
