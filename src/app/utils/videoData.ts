@@ -3,32 +3,32 @@ export const videoData: Record<
   Record<string, Record<string, string[]>>
 > = {
   A1: {
-    "Artikel (der, die, das)": {
-      en: ["WbDh1Ot7Dhg", "en9jzywQdm8", "wepkN0KOGKE"],
-      fr: ["YuPG2_wSgAw", "oKntGw369Po"],
-      ar: [],
+    "Bestimmte und Unbestimmte Artikel": {
+      en: ["gETouvs9mUk", "x_qt231dJzA&t"],
+      fr: [],
+      ar: ["d_o8Ny4455E", "nVEo8fBUWqI"],
     },
     Personalpronomen: {
+      en: ["_Hy9_tDhgtc&t", "IGmXQG65TSY"],
+      fr: [],
+      ar: ["J9cfIxWEQPk", "Ni_jAy1kXVg"],
+    },
+    Präsens: {
       en: [],
       fr: [],
       ar: [],
     },
-    "Präsens (regelmäßige Verben)": {
+    Negation: {
       en: [],
       fr: [],
       ar: [],
     },
-    "Negation (nicht, kein)": {
+    "Grundlegende Wortstellung": {
       en: [],
       fr: [],
       ar: [],
     },
-    "Wortstellung (grundlegend)": {
-      en: [],
-      fr: [],
-      ar: [],
-    },
-    "Modalverben (Einführung)": {
+    Modalverben: {
       en: [],
       fr: [],
       ar: [],

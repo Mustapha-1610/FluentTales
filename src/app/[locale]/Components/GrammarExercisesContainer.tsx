@@ -1,5 +1,4 @@
 import { useState } from "react";
-import VideoCarousel from "./CarouselTest";
 import GrammarExercise, { ExerciseData } from "./GrammarExercises";
 import GrammarFilter from "./GrammarFilters";
 import SentenceRearrangementExercises, {
