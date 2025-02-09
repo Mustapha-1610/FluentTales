@@ -18,36 +18,65 @@ export async function POST(req: NextRequest) {
     // Optionally, you can add an "exerciseLength" parameter if needed.
 
     const aiPrompt = `
-    ### German Grammar Exercise Generator
-    Generate a JSON object with the following structure (and no additional text):
-    
+### German Grammar Exercise Generator
+
+Generate a JSON object with grammar exercises tailored to the specified German level and grammar topic. The output should strictly follow the given JSON structure and contain no extra text. 
+
+**Level:** ${level}  
+**Grammar Topic:** ${course}  
+**Language for Explanations:** ${locale}  
+
+---
+
+#### **Exercise Types & Format**
+- **Fill-in-the-blanks exercises**  
+  - A short paragraph or multiple sentences with missing words.
+  - Provide multiple answer choices, with one correct and others incorrect but plausible.
+  - Include an explanation for why the correct answer is right.
+
+- **Sentence Rearrangement exercises**  
+  - Provide jumbled words that form a grammatically correct sentence.  
+  - List all valid sentence structures that are possible.  
+  - Include an explanation of why the sentence order works grammatically.  
+
+---
+
+### **JSON Response Format**
+\`\`\`json
+{
+  "fill_in_blanks": {
+    "story": "A short paragraph or multiple sentences with blank spaces.",
+    "blanks": [
+      {
+        "options": [
+          { "text": "correct_option", "is_correct": true, "explanation": "Why it's correct in ${locale}." },
+          { "text": "incorrect_option1", "is_correct": false, "explanation": "Why it's incorrect in ${locale}." },
+          { "text": "incorrect_option2", "is_correct": false, "explanation": "Why it's incorrect in ${locale}." }
+        ],
+        "explanation": "Detailed grammar explanation in ${locale}."
+      }
+    ]
+  },
+  "sentence_rearrangement": [
     {
-      "story": "A coherent paragraph (or multiple paragraphs) that is at least two lines longer than the previous example, containing several ___ placeholders where blanks should be filled in for a grammar exercise. The text must maintain a consistent context and storyline from beginning to end, without abrupt topic changes.",
-      "blanks": [
-        {
-          "options": [
-            { "text": "option1", "is_correct": true or false, "explanation": "A detailed explanation in ${locale} explaining why this option is correct, including grammatical reasoning and context-specific details." },
-            { "text": "option2", "is_correct": true or false, "explanation": "A detailed explanation in ${locale}." },
-            { "text": "option3", "is_correct": true or false, "explanation": "A detailed explanation in ${locale}." }
-            // Optionally include more options if it makes sense for the exercise
-          ],
-          "explanation": "A comprehensive explanation in ${locale} describing the grammatical rule, the context of the sentence, and why the correct option is correct compared to the incorrect ones."
-        },
-        // Include at least 8 such blank objects if the context allows,
-        // or more if it fits naturally in the generated text.
-      ]
+      "jumbled_words": ["word1", "word2", "word3"],
+      "valid_sentences": [
+        "Correct sentence variation 1.",
+        "Correct sentence variation 2."
+      ],
     }
-    
-    Generate a German grammar exercise for learners at level ${level} on the topic "${course}". **Important:** 
-    - Use only vocabulary, grammar structures, and expressions that are appropriate and common for level ${level}.
-    - Ensure the exercise text is engaging and long enough (at least two lines longer than previous examples).
-    - Maintain a consistent context throughout the entire generation.
-    - If the exercise involves separable verbs (for example, "einkaufen"), then split the verb into two separate blanks (one for the prefix and one for the main verb) at the appropriate positions in the sentence for example first blank has kaufen and second one has ein like in trennbare verbs.
-    - Each blank's answer options should include detailed, specific explanations that not only state which option is correct but also explain why it is correct in context, referencing the relevant grammatical rule.
-    - You may deviate from the exact example structure if it benefits the context; be flexible while following the overall JSON format.
-    
-    Return valid JSON only.
-    `;
+  ]
+}
+\`\`\`
+
+**Important Notes:**  
+- Generate at least **5 sentence rearrangement exercises** per request.  
+- Ensure that **all words are included** in sentence rearrangement exercises.  
+- If multiple valid sentence structures exist, list them under **valid_sentences** instead of showing only one correct answer.  
+- Exclude a direct "correct answer" field—evaluate correctness based on user input.  
+
+Return **only valid JSON** without any additional explanations.
+`;
 
     const result = await model.generateContent(aiPrompt);
     const response: any = result.response;

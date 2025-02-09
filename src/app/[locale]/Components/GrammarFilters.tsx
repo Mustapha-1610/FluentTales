@@ -2,11 +2,18 @@ import { useState } from "react";
 import { useLocale } from "next-intl";
 import { ExerciseData } from "./GrammarExercises";
 import { grammarCourses } from "@/app/utils/grammarCourses";
+import { SentenceRearrangementExerciseData } from "./SentenceRearrangementExercises";
 
 interface Props {
   setExerciseData: (exerciseData: ExerciseData | null) => void;
+  setSentenceRearrangementExercises: (
+    value: SentenceRearrangementExerciseData[] | null
+  ) => void;
 }
-export default function GrammarFilter({ setExerciseData }: Props) {
+export default function GrammarFilter({
+  setExerciseData,
+  setSentenceRearrangementExercises,
+}: Props) {
   const [selectedLevel, setSelectedLevel] =
     useState<keyof typeof grammarCourses>("A1");
   const [selectedTopic, setSelectedTopic] = useState<string>("");
@@ -19,8 +26,9 @@ export default function GrammarFilter({ setExerciseData }: Props) {
     setIsLoading(true);
     setError(null);
     setExerciseData(null);
+    setSentenceRearrangementExercises(null);
     try {
-      const res = await fetch("/api/generateGrammarExercises", {
+      const response = await fetch("/api/generateGrammarExercises", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -29,9 +37,11 @@ export default function GrammarFilter({ setExerciseData }: Props) {
           locale: locale,
         }),
       });
-      const json = await res.json();
-      if (json.success) {
-        setExerciseData(json.data);
+      const res = await response.json();
+      if (res.success) {
+        setExerciseData(res.data.fill_in_blanks);
+        console.log(res.data.sentence_rearrangement);
+        setSentenceRearrangementExercises(res.data.sentence_rearrangement);
       } else {
         setError("Error generating exercise.");
       }
