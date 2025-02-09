@@ -115,7 +115,7 @@ export default function Filters({
           value={storyContext}
           onChange={(e) => setStoryContext(e.target.value)}
           placeholder={t("Enter Context")}
-          className="flex-grow px-4 py-3 bg-gray-50 dark:bg-[#111827] text-gray-800 dark:text-gray-100 border border-solid rounded-xl shadow-sm border-gray-300 dark:border-gray-600"
+          className="flex-grow px-4 py-3 bg-gray-50 dark:bg-[#111827] text-gray-800 dark:text-gray-100 border border-solid rounded-xl shadow-sm border-gray-300 dark:border-gray-600 focus:outline-none"
         />
         <button
           className={`flex gap-3.5 px-4 mr-2 py-3 text-center text-gray-800  whitespace-nowrap bg-gray-200 ${

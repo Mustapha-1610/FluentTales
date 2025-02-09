@@ -192,14 +192,18 @@ const SentenceRearrangementExercises: React.FC<
             </div>
           ))}
         </div>
-        <button
-          className="w-full px-16 py-4 text-black dark:text-white bg-blue-100 dark:bg-blue-900 rounded-lg mt-6"
-          disabled={!allCompleted || isChecked}
-          onClick={handleCheckAnswers}
-        >
-          Antwort überprüfen
-        </button>
       </div>
+      <button
+        className={`mt-4 w-full px-6 py-3 rounded-lg font-semibold text-white ${
+          !allCompleted || isChecked
+            ? "bg-gray-400 cursor-not-allowed"
+            : "bg-blue-500 hover:bg-blue-600"
+        }`}
+        disabled={!allCompleted || isChecked}
+        onClick={handleCheckAnswers}
+      >
+        Antwort überprüfen
+      </button>
     </div>
   );
 };

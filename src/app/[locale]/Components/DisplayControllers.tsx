@@ -4,8 +4,10 @@ import { TbTextGrammar } from "react-icons/tb";
 import { useTranslations } from "use-intl";
 
 interface Props {
-  setSelectedButton: (value: "Comprehension" | "Grammar" | "Writing") => void;
-  selectedButton: "Comprehension" | "Grammar" | "Writing";
+  setSelectedButton: (
+    value: "Comprehension" | "Grammar" | "Writing" | "Vocabulary"
+  ) => void;
+  selectedButton: "Comprehension" | "Grammar" | "Writing" | "Vocabulary";
 }
 
 export default function DisplayControllers({
@@ -13,7 +15,7 @@ export default function DisplayControllers({
   setSelectedButton,
 }: Props) {
   const handleButtonClick = (
-    buttonName: "Comprehension" | "Grammar" | "Writing"
+    buttonName: "Comprehension" | "Grammar" | "Writing" | "Vocabulary"
   ) => {
     setSelectedButton(buttonName);
   };
@@ -41,6 +43,13 @@ export default function DisplayControllers({
         >
           <FaBook size={20} />
           <div>{t("Comprehension")}</div>
+        </div>
+        <div
+          className={getButtonStyles("Vocabulary")}
+          onClick={() => handleButtonClick("Vocabulary")}
+        >
+          <FaBook size={20} />
+          <div>Vocabulary</div>
         </div>
         <div
           className={getButtonStyles("Grammar")}

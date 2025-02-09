@@ -54,8 +54,8 @@ export default function GrammarFilter({
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center mb-12 mt-12 w-full">
-        <div className="flex flex-col md:flex-row gap-4 p-4 bg-white dark:bg-gray-900 rounded-2xl shadow-lg w-full max-w-lg">
+      <div className="flex mx-auto w-full flex-col items-center justify-center mb-12 mt-12 ">
+        <div className="flex  flex-col md:flex-row gap-4 p-4 bg-white dark:bg-gray-900 rounded-2xl shadow-lg w-full max-w-lg">
           <div className="flex flex-col w-full md:w-auto">
             <label className="text-gray-700 dark:text-gray-300 font-semibold mb-1">
               Sprachlevel

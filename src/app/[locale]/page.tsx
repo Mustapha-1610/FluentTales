@@ -7,11 +7,12 @@ import GeneratedContentContainer from "./Components/GeneratedContentContainer";
 
 import LanguageChanger from "./Components/LanguageSelector";
 import GrammarExercisesContainer from "./Components/GrammarExercisesContainer";
+import VocabularyGenerator from "./Components/VocabComponent";
 
 export default function Page() {
   const [darkMode, setDarkMode] = useState(false);
   const [selectedButton, setSelectedButton] = useState<
-    "Comprehension" | "Grammar" | "Writing"
+    "Comprehension" | "Grammar" | "Writing" | "Vocabulary"
   >("Comprehension");
 
   useEffect(() => {
@@ -67,8 +68,12 @@ export default function Page() {
           />
           {selectedButton === "Comprehension" ? (
             <GeneratedContentContainer />
+          ) : selectedButton === "Grammar" ? (
+            <GrammarExercisesContainer />
+          ) : selectedButton === "Vocabulary" ? (
+            <VocabularyGenerator />
           ) : (
-            selectedButton === "Grammar" && <GrammarExercisesContainer />
+            <></>
           )}
         </div>
       </div>
