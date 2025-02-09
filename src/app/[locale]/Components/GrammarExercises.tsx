@@ -93,13 +93,12 @@ const InlineGrammarExercise: React.FC<InlineGrammarExerciseProps> = ({
 
   const parts = exerciseData.story.split("___");
 
-  // All blanks must be answered to enable checking
   const allAnswered = selectedAnswers.every((ans) => ans !== "");
 
   return (
     <div className="w-full mx-auto p-4 ">
       <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-6">
-        Grammatikübung
+        Fill In The Blanks
       </h2>
       <div className="p-4 border border-gray-300 dark:border-gray-700 rounded-lg shadow-md dark:shadow-gray-700">
         <div className="text-gray-700 dark:text-gray-300 text-lg ">

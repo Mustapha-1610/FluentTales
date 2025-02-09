@@ -168,7 +168,6 @@ const SentenceRearrangementExercises: React.FC<
     (ex, idx) => answers[idx].length === ex.jumbled_words.length
   );
 
-  // Global check – when pressed, set the flag so that all items show their feedback.
   const handleCheckAnswers = () => {
     setIsChecked(true);
   };
@@ -176,7 +175,7 @@ const SentenceRearrangementExercises: React.FC<
   return (
     <div className="w-full mx-auto p-4">
       <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-6">
-        Grammatikübung
+        Sentence Rearrangement
       </h2>
       <div className=" w-full mx-auto   p-4  border dark:border-gray-700 rounded-lg shadow-md dark:shadow-gray-700 ">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

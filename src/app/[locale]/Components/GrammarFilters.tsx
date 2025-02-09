@@ -40,7 +40,7 @@ export default function GrammarFilter({
       const res = await response.json();
       if (res.success) {
         setExerciseData(res.data.fill_in_blanks);
-        console.log(res.data.sentence_rearrangement);
+        console.log(res.data);
         setSentenceRearrangementExercises(res.data.sentence_rearrangement);
       } else {
         setError("Error generating exercise.");
