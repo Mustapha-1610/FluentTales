@@ -3,7 +3,7 @@ import { useLocale } from "next-intl";
 import { ExerciseData } from "./GrammarExercises";
 import { grammarCourses } from "@/app/utils/grammarCourses";
 import { SentenceRearrangementExerciseData } from "./SentenceRearrangementExercises";
-import VideoCarousel from "./VideoCarousel";
+import VideoCarousel from "../Vocabulary/VideoCarousel";
 
 interface Props {
   setExerciseData: (exerciseData: ExerciseData | null) => void;
@@ -115,7 +115,6 @@ export default function GrammarFilter({
         {error && <p className="text-red-500 mt-4 text-center">{error}</p>}{" "}
         {/* Centered error message */}
       </div>
-      <VideoCarousel course={selectedTopic} level={selectedLevel} />
     </>
   );
 }

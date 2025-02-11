@@ -3,11 +3,11 @@ import React, { useState, useEffect } from "react";
 import { IoIosMoon, IoIosSunny } from "react-icons/io";
 import Header from "./Components/Header";
 import DisplayControllers from "./Components/DisplayControllers";
-import GeneratedContentContainer from "./Components/GeneratedContentContainer";
+import GeneratedContentContainer from "./Components/Comprehension/GeneratedContentContainer";
 
 import LanguageChanger from "./Components/LanguageSelector";
-import GrammarExercisesContainer from "./Components/GrammarExercisesContainer";
-import VocabularyGenerator from "./Components/VocabComponent";
+import GrammarExercisesContainer from "./Components/Grammar/GrammarExercisesContainer";
+import VocabularyGenerator from "./Components/Vocabulary/VocabComponent";
 
 export default function Page() {
   const [darkMode, setDarkMode] = useState(false);
@@ -61,20 +61,25 @@ export default function Page() {
 
       <div className="max-w-[1330px] w-full px-6 mt-32 max-md:mt-20">
         <Header />
-        <div className="flex flex-col rounded-none mt-44 mb-16 max-md:mt-24 max-md:mb-8">
+        <div
+          id="content-section"
+          className="flex flex-col rounded-none mt-44 mb-16 max-md:mt-24 max-md:mb-8"
+        >
           <DisplayControllers
             selectedButton={selectedButton}
             setSelectedButton={setSelectedButton}
           />
-          {selectedButton === "Comprehension" ? (
-            <GeneratedContentContainer />
-          ) : selectedButton === "Grammar" ? (
-            <GrammarExercisesContainer />
-          ) : selectedButton === "Vocabulary" ? (
-            <VocabularyGenerator />
-          ) : (
-            <></>
-          )}
+          <div>
+            {selectedButton === "Comprehension" ? (
+              <GeneratedContentContainer />
+            ) : selectedButton === "Grammar" ? (
+              <GrammarExercisesContainer />
+            ) : selectedButton === "Vocabulary" ? (
+              <VocabularyGenerator />
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
       </div>
     </div>

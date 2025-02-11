@@ -1,21 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { useLocale } from "next-intl";
-import { videoData } from "@/app/utils/videoData";
+import { VideoData } from "@/app/utils/videoData";
 
-interface VideoCarouselProps {
-  level: string;
-  course: string;
+function getRandomItems(array: string[], count = 3): string[] {
+  const result = new Set<string>();
+  while (result.size < count && result.size < array.length) {
+    const randomIndex = Math.floor(Math.random() * array.length);
+    result.add(array[randomIndex]);
+  }
+  return Array.from(result);
 }
 
-const VideoCarousel: React.FC<VideoCarouselProps> = ({ level, course }) => {
-  const locale = useLocale(); // Get user's language
-  const videos = videoData?.[level]?.[course]?.[locale] || [];
+export default function VideoCarousel() {
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const [randomVideos, setRandomVideos] = useState<string[]>([]);
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  useEffect(() => {
+    setRandomVideos(getRandomItems(VideoData));
+  }, []);
 
   const nextSlide = () => {
-    if (currentIndex < videos.length - 1) {
+    if (currentIndex < randomVideos.length - 1) {
       setCurrentIndex(currentIndex + 1);
     }
   };
@@ -26,12 +31,12 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({ level, course }) => {
     }
   };
 
-  if (videos.length === 0) {
+  if (randomVideos.length === 0) {
     return <p className="text-center text-gray-500">No videos available.</p>;
   }
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center mb-10">
       <div className="flex justify-between items-center w-[900px] max-w-[1000px]">
         <button
           onClick={prevSlide}
@@ -49,7 +54,9 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({ level, course }) => {
         <div className="flex-grow mx-4">
           <div className="relative pt-[56.25%]">
             <iframe
-              src={`https://www.youtube.com/embed/${videos[currentIndex]}`}
+              src={`https://www.youtube.com/embed/${
+                randomVideos[currentIndex].split("v=")[1]
+              }`}
               title="YouTube video player"
               loading="lazy"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -62,11 +69,11 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({ level, course }) => {
         <button
           onClick={nextSlide}
           className={`p-3 transition-all rounded-full ${
-            currentIndex === videos.length - 1
+            currentIndex === randomVideos.length - 1
               ? "opacity-50 cursor-not-allowed"
               : "opacity-100"
           }`}
-          disabled={currentIndex === videos.length - 1}
+          disabled={currentIndex === randomVideos.length - 1}
         >
           <IoIosArrowForward
             size={35}
@@ -76,6 +83,4 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({ level, course }) => {
       </div>
     </div>
   );
-};
-
-export default VideoCarousel;
+}

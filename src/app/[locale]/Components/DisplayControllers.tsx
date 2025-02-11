@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { FaBook, FaRegKeyboard } from "react-icons/fa6";
 import { TbTextGrammar } from "react-icons/tb";
 import { useTranslations } from "use-intl";
@@ -18,6 +17,10 @@ export default function DisplayControllers({
     buttonName: "Comprehension" | "Grammar" | "Writing" | "Vocabulary"
   ) => {
     setSelectedButton(buttonName);
+    const targetElement = document.getElementById("comprehension-section");
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   const getButtonStyles = (buttonName: string) => {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
-import { FilterForm } from "../Types/filter-form";
+import { FilterForm } from "../../Types/filter-form";
 import { useTranslations } from "next-intl";
 
 interface FilterModalProps {

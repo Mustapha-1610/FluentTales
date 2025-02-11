@@ -2,7 +2,7 @@ import { useState } from "react";
 import Filters from "./Filters";
 import GeneratedStory from "./GeneratedStoryContainer";
 import ComprehensionExercises from "./ComprehensionExercises";
-import GenerateExercises from "../FunctionalityButtonsComponents/GenerateExercises";
+import GenerateExercises from "../../FunctionalityButtonsComponents/GenerateExercises";
 import TrueFalseExercises from "./TrueFalseExercises";
 
 export default function GeneratedContentContainer() {

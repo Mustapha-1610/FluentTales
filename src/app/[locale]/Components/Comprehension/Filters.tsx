@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FaWandMagicSparkles } from "react-icons/fa6";
 import { IoMdSettings } from "react-icons/io";
 import FilterModal from "./SelectFiltersModal";
-import { FilterForm } from "../Types/filter-form";
+import { FilterForm } from "../../Types/filter-form";
 import { useTranslations } from "next-intl";
 interface Props {
   setStory: (story: string | null) => void;

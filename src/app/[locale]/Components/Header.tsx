@@ -5,7 +5,21 @@ import { useTranslations } from "next-intl";
 
 export default function Header() {
   const t = useTranslations("Header");
+  function handleScroll() {
+    const targetElement = document.getElementById("content-section");
+    if (targetElement) {
+      const offsetTop = targetElement.offsetTop;
 
+      // Define an offset adjustment (e.g., to account for a fixed header)
+      const offsetAdjustment = -80; // Adjust this value as needed
+
+      // Scroll to the calculated position
+      window.scrollTo({
+        top: offsetTop + offsetAdjustment,
+        behavior: "smooth",
+      });
+    }
+  }
   return (
     <div className="px-11 max-md:px-5 max-md:max-w-full">
       <div className="flex gap-4 max-md:flex-col max-md:items-center">
@@ -19,7 +33,10 @@ export default function Header() {
             </div>
           </div>
           <div className="flex gap-12 max-md:gap-4 max-md:flex-col max-md:items-center">
-            <button className="px-5 py-3 flex items-center bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 font-semibold rounded-lg shadow hover:bg-gray-300 dark:hover:bg-gray-600 max-md:px-4 max-md:py-3 max-md:text-sm">
+            <button
+              onClick={handleScroll}
+              className="px-5 py-3 flex items-center bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 font-semibold rounded-lg shadow hover:bg-gray-300 dark:hover:bg-gray-600 max-md:px-4 max-md:py-3 max-md:text-sm"
+            >
               <TbConfetti className="mr-2" size={20} />
               Lets Start
             </button>
