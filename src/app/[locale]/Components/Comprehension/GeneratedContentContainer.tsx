@@ -19,19 +19,29 @@ export default function GeneratedContentContainer() {
   const [show_true_false_exercises, setShow_True_False_Exercises] =
     useState<boolean>(false);
 
+  function shuffleArray(array: any[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
   async function regenerateExecersises() {
     try {
       setLoadingComprehensionExercises(true);
       setLoading_True_False_Exercises(true);
-      const response = await fetch("/api/regenerateExercise", {
+      const response = await fetch("/api/regenerate-comprehension-exercises", {
         method: "POST",
         body: JSON.stringify({
           context: story,
           previousExercises: comprehensionExercises,
+          true_false_exercises,
         }),
       });
       const res = await response.json();
-      setComprehensionExercises(res.data.exercises);
+      console.log(res.data.true_false_exercises);
+      setComprehensionExercises(res.data.comprehension_exercises);
+      setTrue_False_Exercises(shuffleArray(res.data.true_false_exercises));
     } catch (error) {
       console.error(error);
     } finally {

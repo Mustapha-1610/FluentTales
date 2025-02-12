@@ -1,5 +1,5 @@
 import { useState } from "react";
-import GrammarExercise, { ExerciseData } from "./GrammarExercises";
+import GrammarExercise, { ExerciseData } from "./FillInTheBlanksExercise";
 import GrammarFilter from "./GrammarFilters";
 import SentenceRearrangementExercises, {
   SentenceRearrangementExerciseData,

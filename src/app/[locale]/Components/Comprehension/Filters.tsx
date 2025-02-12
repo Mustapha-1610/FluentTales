@@ -40,7 +40,7 @@ export default function Filters({
         setShow_True_False_Exercises(false);
         setShowComprehensionExercises(false);
         setLoading(true);
-        const response = await fetch("/api/generativeAI", {
+        const response = await fetch("/api/generate-comprehension-story", {
           method: "POST",
           body: JSON.stringify({
             generationLength: filterOptions.generationLength,

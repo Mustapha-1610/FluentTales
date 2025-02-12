@@ -1,5 +1,8 @@
 // InlineGrammarExercise.tsx
+import { useTextTranslation } from "@/app/hooks/useTranslations";
+import { useLocale } from "next-intl";
 import React, { useState } from "react";
+import TranslationPopUp from "../Comprehension/TranslationsPopUp";
 
 interface Option {
   text: string;
@@ -94,14 +97,32 @@ const InlineGrammarExercise: React.FC<InlineGrammarExerciseProps> = ({
   const parts = exerciseData.story.split("___");
 
   const allAnswered = selectedAnswers.every((ans) => ans !== "");
+  const locale = useLocale();
 
+  const targetLanguage =
+    locale === "en" ? "English" : locale === "fr" ? "French" : "Arabic";
+
+  const {
+    containerRef,
+    selectedText,
+    popupPosition,
+    translationData,
+    isFetching,
+    error,
+  } = useTextTranslation({
+    targetLanguage,
+    maxWordLimit: 15,
+  });
   return (
     <div className="w-full mx-auto p-4 ">
       <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-6">
         Fill In The Blanks
       </h2>
       <div className="p-4 border border-gray-300 dark:border-gray-700 rounded-lg shadow-md dark:shadow-gray-700">
-        <div className="text-gray-700 dark:text-gray-300 text-lg ">
+        <div
+          ref={containerRef}
+          className="text-gray-700 dark:text-gray-300 text-lg "
+        >
           {parts.map((part, index) => (
             <React.Fragment key={index}>
               {part}
@@ -129,6 +150,15 @@ const InlineGrammarExercise: React.FC<InlineGrammarExerciseProps> = ({
       >
         Antworten überprüfen
       </button>
+      {popupPosition && (
+        <TranslationPopUp
+          error={error}
+          isFetching={isFetching}
+          popupPosition={popupPosition}
+          selectedText={selectedText!}
+          translationData={translationData}
+        />
+      )}
     </div>
   );
 };

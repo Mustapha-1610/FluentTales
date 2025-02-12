@@ -26,7 +26,7 @@ Generate a German story and corresponding exercises based on the following param
 
 #### Parameters:
 - **Context/Theme**: ${context}
-- **Story Length**: ${generationLength} (Options: short: 300-600 words, medium: 700-1000 words, long: 1300-1600 words)
+- **Story Length**: ${generationLength} (${generationLength}: short: 200-400 words, medium: 500-700 words, long: 900-1100 words)
 - **Language Level**: ${languageLevel} (e.g., A1, A2, B1)
 - **Target Audience**: ${targetAudience}
 - **Grammar Level**: ${grammarLevel} 
@@ -45,13 +45,15 @@ Generate a German story and corresponding exercises based on the following param
    - Alternate between narrative perspectives (e.g., first-person, third-person).
    - Use diverse genres (e.g., mystery, adventure, humor) and introduce unexpected twists or decisions.
 
-#### Exercise Requirements:
-- Generate **4 comprehension questions** that reflect the story's content.
-  - Each question must include **three answer options**:
-    - One correct answer (varied in position across questions to avoid patterns).
-    - Two incorrect but plausible answers.
-- Generate **4 True/False questions** based on the story.
-  - Each question must be a statement that is either true or false based on the story's content.
+#### **Exercise Requirements**
+1. **Comprehension Questions (4 total)**:
+   - Each question should have **three answer choices**.
+   - Only **one answer is correct**, but its position should vary across questions.
+   - The two incorrect answers should be plausible but clearly wrong.
+
+2. **True/False Statements (6 total)**:
+   - The mix of True and False answers should **vary randomly in each generation**.
+   - Make sure there are always atleast  3 answers that  are  true and 3 that are false but they should be randomly positioned.
 
 #### Output Format:
 Return the result in **valid JSON** with the following structure:

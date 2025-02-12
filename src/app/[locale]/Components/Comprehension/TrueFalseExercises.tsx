@@ -74,6 +74,10 @@ const TrueFalseExercises: React.FC<TrueFalseExercisesProps> = ({
   true_false_exercises,
   isLoading,
 }) => {
+  useEffect(() => {
+    setIsAnswered(false);
+    setSelectedAnswers(new Array(true_false_exercises.length).fill(null));
+  }, [true_false_exercises]);
   const [selectedAnswers, setSelectedAnswers] = useState<(boolean | null)[]>(
     new Array(true_false_exercises.length).fill(null)
   );

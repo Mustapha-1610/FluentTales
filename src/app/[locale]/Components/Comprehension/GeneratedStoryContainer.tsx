@@ -3,6 +3,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { PulseLoader } from "react-spinners";
 import { FaLanguage, FaExclamationTriangle } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
+import { useTextTranslation } from "@/app/hooks/useTranslations";
+import TranslationPopUp from "./TranslationsPopUp";
 
 interface Props {
   story: string | null;
@@ -11,114 +13,20 @@ interface Props {
 
 const GeneratedStory: React.FC<Props> = ({ story, isLoading }) => {
   const locale = useLocale();
-  const [selectedText, setSelectedText] = useState<string | null>(null);
-  const [popupPosition, setPopupPosition] = useState<{
-    x: number;
-    y: number;
-  } | null>(null);
-  const [translationData, setTranslationData] = useState<{
-    translation: string;
-    exampleSentence: string;
-  } | null>(null);
-  const [isFetching, setIsFetching] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const targetLanguage =
+    locale === "en" ? "English" : locale === "fr" ? "French" : "Arabic";
 
-  const MAX_WORD_LIMIT = 15;
-
-  const handleTextSelection = () => {
-    const selection = window.getSelection();
-    const text = selection?.toString().trim();
-
-    if (text && selection?.rangeCount) {
-      const wordCount = text.split(" ").length;
-      const range = selection.getRangeAt(0);
-      const rect = range.getBoundingClientRect();
-      setPopupPosition({
-        x: rect.left + window.scrollX,
-        y: rect.top + window.scrollY,
-      });
-
-      if (wordCount > MAX_WORD_LIMIT) {
-        setSelectedText(null);
-        setError(`Please select no more than ${MAX_WORD_LIMIT} words.`);
-        return;
-      }
-
-      setSelectedText(text);
-      setError(null);
-    } else {
-      setSelectedText(null);
-      setPopupPosition(null);
-    }
-  };
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      containerRef.current &&
-      !containerRef.current.contains(event.target as Node)
-    ) {
-      setSelectedText(null);
-      setPopupPosition(null);
-      setTranslationData(null);
-    }
-  };
-
-  const fetchTranslation = async (text: string) => {
-    setIsFetching(true);
-    try {
-      const response = await fetch("/api/generateTranslation", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          text,
-          targetLanguage:
-            locale === "en" ? "English" : locale === "fr" ? "French" : "Arabic",
-        }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setTranslationData(data);
-      } else {
-        setTranslationData({
-          translation: "Error fetching translation",
-          exampleSentence: "",
-        });
-      }
-    } catch (error) {
-      console.error("Error fetching translation:", error);
-      setTranslationData({
-        translation: "Error fetching translation",
-        exampleSentence: "",
-      });
-    } finally {
-      setIsFetching(false);
-    }
-  };
-
-  useEffect(() => {
-    if (selectedText) {
-      fetchTranslation(selectedText);
-    }
-  }, [selectedText]);
-
-  useEffect(() => {
-    const container = containerRef.current;
-
-    if (container) {
-      container.addEventListener("mouseup", handleTextSelection);
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      if (container) {
-        container.removeEventListener("mouseup", handleTextSelection);
-      }
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  const {
+    containerRef,
+    selectedText,
+    popupPosition,
+    translationData,
+    isFetching,
+    error,
+  } = useTextTranslation({
+    targetLanguage,
+    maxWordLimit: 15,
+  });
 
   return (
     <div>
@@ -147,40 +55,13 @@ const GeneratedStory: React.FC<Props> = ({ story, isLoading }) => {
         )}
       </div>
       {popupPosition && (
-        <div
-          className="absolute z-50 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-500 text-base text-black dark:text-white"
-          style={{
-            top: popupPosition.y + 20,
-            left: popupPosition.x,
-            minWidth: "300px",
-          }}
-        >
-          <div className="flex items-center justify-between mb-2">
-            <h4 className="font-bold text-base flex items-center">
-              Translation <FaLanguage className="ml-2 text-blue-500" />
-            </h4>
-          </div>
-          {error ? (
-            <div className="flex items-center text-yellow-500">
-              <FaExclamationTriangle className="mr-2" /> {error}
-            </div>
-          ) : isFetching ? (
-            <div className="flex items-center justify-center">
-              <PulseLoader color="#4b5563" size={6} />
-            </div>
-          ) : translationData ? (
-            <>
-              <p className="font-bold">Word/Text:</p>
-              <p className="mb-2">{selectedText}</p>
-              <p className="font-bold">Translation:</p>
-              <p className="mb-2">{translationData.translation}</p>
-              <p className="font-bold">Example Sentence:</p>
-              <p>{translationData.exampleSentence}</p>
-            </>
-          ) : (
-            <p>Error loading translation.</p>
-          )}
-        </div>
+        <TranslationPopUp
+          error={error}
+          isFetching={isFetching}
+          popupPosition={popupPosition}
+          selectedText={selectedText!}
+          translationData={translationData}
+        />
       )}
     </div>
   );

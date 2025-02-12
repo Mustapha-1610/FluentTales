@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocale } from "next-intl";
-import { ExerciseData } from "./GrammarExercises";
+import { ExerciseData } from "./FillInTheBlanksExercise";
 import { grammarCourses } from "@/app/utils/grammarCourses";
 import { SentenceRearrangementExerciseData } from "./SentenceRearrangementExercises";
 import VideoCarousel from "../Vocabulary/VideoCarousel";
@@ -29,7 +29,7 @@ export default function GrammarFilter({
     setExerciseData(null);
     setSentenceRearrangementExercises(null);
     try {
-      const response = await fetch("/api/generateGrammarExercises", {
+      const response = await fetch("/api/generate-grammar-exercises", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
