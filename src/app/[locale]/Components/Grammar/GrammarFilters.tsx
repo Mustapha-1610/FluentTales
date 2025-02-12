@@ -98,7 +98,7 @@ export default function GrammarFilter({
             {/* Added flex items-center and margin adjustment */}
             <button
               onClick={generateExercises}
-              className={`px-4 py-0.5 rounded-lg font-semibold whitespace-nowrap w-full md:w-auto flex items-center justify-center h-full ${
+              className={`px-4 max-md:p-3 py-0.5 rounded-lg font-semibold whitespace-nowrap w-full md:w-auto flex items-center justify-center h-full ${
                 // Added h-full
                 selectedTopic && !isLoading
                   ? "bg-gray-200 dark:text-gray-100 text-gray-800 dark:bg-[#374151] cursor-pointer"

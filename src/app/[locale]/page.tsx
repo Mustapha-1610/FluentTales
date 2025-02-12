@@ -59,7 +59,7 @@ export default function Page() {
         <LanguageChanger />
       </div>
 
-      <div className="max-w-[1330px] w-full px-6 mt-32 max-md:mt-20">
+      <div className="max-w-[1350px] max-md:w-full w-full px-6 mt-32 max-md:mt-20">
         <Header />
         <div
           id="content-section"

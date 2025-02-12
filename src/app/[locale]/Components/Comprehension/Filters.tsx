@@ -100,12 +100,14 @@ export default function Filters({
             </div>
           </div>
         </div>
-        <div
-          className="flex gap-2 px-3 py-3 mr-2 text-gray-800 dark:text-gray-100 bg-blue-50 dark:bg-blue-900 rounded-xl items-center cursor-pointer"
-          onClick={() => setIsFilterModalOpen(true)}
-        >
-          <IoMdSettings size={20} />
-          <div>{t("Edit Filters")}</div>
+        <div className="flex gap-2 justify-center   rounded-xl items-center max-md:w-full">
+          <div
+            className="flex justify-center gap-2 px-3  py-3 mr-2 text-gray-800 dark:text-gray-100 bg-blue-50 dark:bg-blue-900 rounded-xl items-center cursor-pointer max-md:w-full"
+            onClick={() => setIsFilterModalOpen(true)}
+          >
+            <IoMdSettings size={20} />
+            <div>{t("Edit Filters")}</div>
+          </div>
         </div>
       </div>
 

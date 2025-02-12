@@ -37,7 +37,8 @@ export default function VideoCarousel() {
 
   return (
     <div className="flex flex-col items-center mb-10">
-      <div className="flex justify-between items-center w-[900px] max-w-[1000px]">
+      <div className="flex justify-between items-center w-[100%] max-w-[900px]  xs:max-w-[700px]">
+        {" "}
         <button
           onClick={prevSlide}
           className={`p-3 transition-all rounded-full ${
@@ -50,7 +51,6 @@ export default function VideoCarousel() {
             className="text-gray-800 dark:text-gray-200"
           />
         </button>
-
         <div className="flex-grow mx-4">
           <div className="relative pt-[56.25%]">
             <iframe
@@ -65,7 +65,6 @@ export default function VideoCarousel() {
             />
           </div>
         </div>
-
         <button
           onClick={nextSlide}
           className={`p-3 transition-all rounded-full ${
