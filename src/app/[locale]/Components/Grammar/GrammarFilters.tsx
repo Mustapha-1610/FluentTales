@@ -35,7 +35,8 @@ export default function GrammarFilter({
         body: JSON.stringify({
           level: selectedLevel,
           course: selectedTopic,
-          locale: locale,
+          locale:
+            locale === "en" ? "English" : locale === "ar" ? "Arabic" : "French",
         }),
       });
       const res = await response.json();

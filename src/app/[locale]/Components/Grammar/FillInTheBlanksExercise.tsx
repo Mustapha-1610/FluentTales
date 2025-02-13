@@ -79,9 +79,9 @@ const InlineBlank: React.FC<InlineBlankProps> = ({
   );
 };
 
-const InlineGrammarExercise: React.FC<InlineGrammarExerciseProps> = ({
+export default function FillInTheBlanksExercise({
   exerciseData,
-}) => {
+}: InlineGrammarExerciseProps) {
   // Use the incoming exerciseData instead of hardcoded data
   const [selectedAnswers, setSelectedAnswers] = useState<(number | "")[]>(
     new Array(exerciseData.blanks.length).fill("")
@@ -161,6 +161,4 @@ const InlineGrammarExercise: React.FC<InlineGrammarExerciseProps> = ({
       )}
     </div>
   );
-};
-
-export default InlineGrammarExercise;
+}

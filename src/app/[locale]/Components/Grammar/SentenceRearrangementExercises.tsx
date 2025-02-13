@@ -44,12 +44,9 @@ const SentenceRearrangementExerciseItem: React.FC<
   );
 
   return (
-    <div className="dark:bg-gray-700 rounded-xl p-4">
+    <div className="dark:bg-gray-700 rounded-xl p-3">
       {/* Available Words */}
-      <div className="mb-4">
-        <p className="font-medium text-gray-800 dark:text-gray-100 mb-2">
-          Verfügbare Wörter:
-        </p>
+      <div className="mb-2">
         <div className="flex flex-wrap gap-2">
           {exerciseData.jumbled_words.map((word, index) => {
             // Disable a word if it is already selected or if answers have been checked.

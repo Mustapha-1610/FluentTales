@@ -1,10 +1,11 @@
 import * as React from "react";
 import { FaQuestion } from "react-icons/fa6";
 import { TbConfetti } from "react-icons/tb";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function Header() {
   const t = useTranslations("Header");
+  const locale = useLocale();
   function handleScroll() {
     const targetElement = document.getElementById("content-section");
     if (targetElement) {
@@ -26,7 +27,10 @@ export default function Header() {
             <div className="self-start text-4xl font-bold leading-none max-md:self-center">
               {t("title")}
             </div>
-            <div className="mt-8 text-lg leading-6 text-gray-700 dark:text-gray-400 max-md:text-sm">
+            <div
+              dir={locale == "ar" ? "rtl" : "ltr"}
+              className="mt-8 text-lg leading-6 text-gray-700 dark:text-gray-400 max-md:text-sm"
+            >
               {t("about")}
             </div>
           </div>

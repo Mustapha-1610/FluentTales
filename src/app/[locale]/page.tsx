@@ -8,6 +8,7 @@ import GeneratedContentContainer from "./Components/Comprehension/GeneratedConte
 import LanguageChanger from "./Components/LanguageSelector";
 import GrammarExercisesContainer from "./Components/Grammar/GrammarExercisesContainer";
 import VocabularyGenerator from "./Components/Vocabulary/VocabComponent";
+import WritingAssistant from "./Components/Writing/TranslationContainer";
 
 export default function Page() {
   const [darkMode, setDarkMode] = useState(false);
@@ -77,7 +78,7 @@ export default function Page() {
             ) : selectedButton === "Vocabulary" ? (
               <VocabularyGenerator />
             ) : (
-              <></>
+              selectedButton === "Writing" && <WritingAssistant />
             )}
           </div>
         </div>

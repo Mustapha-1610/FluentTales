@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
           { "text": "incorrect_option1", "is_correct": false" },
           { "text": "incorrect_option2", "is_correct": false" }
         ],
-        "explanation": "Detailed grammar explanation in ${locale}."
+        "explanation": "Detailed grammar explanation in this language :  ${locale}."
       }
     ]
   },
