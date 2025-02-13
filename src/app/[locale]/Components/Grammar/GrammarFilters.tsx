@@ -56,7 +56,7 @@ export default function GrammarFilter({
   return (
     <>
       <div className="flex mx-auto w-full flex-col items-center justify-center mb-12 mt-12 ">
-        <div className="flex  flex-col md:flex-row gap-4 p-4 bg-white dark:bg-gray-900 rounded-2xl shadow-lg w-full max-w-lg">
+        <div className="flex  flex-col md:flex-row gap-4 p-4 bg-white dark:bg-gray-900 rounded-2xl shadow-lg w-full max-w-4xl">
           <div className="flex flex-col w-full md:w-auto">
             <label className="text-gray-700 dark:text-gray-300 font-semibold mb-1">
               Sprachlevel
@@ -77,12 +77,12 @@ export default function GrammarFilter({
             </select>
           </div>
 
-          <div className="flex flex-col w-full md:w-auto">
+          <div className="flex flex-col w-full ">
             <label className="text-gray-700 dark:text-gray-300 font-semibold mb-1">
               Grammatikthema
             </label>
             <select
-              className="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 border-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 border-none "
               value={selectedTopic}
               onChange={(e) => setSelectedTopic(e.target.value)}
             >

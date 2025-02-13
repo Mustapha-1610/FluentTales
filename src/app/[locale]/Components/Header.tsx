@@ -2,8 +2,10 @@ import * as React from "react";
 import { FaQuestion } from "react-icons/fa6";
 import { TbConfetti } from "react-icons/tb";
 import { useLocale, useTranslations } from "next-intl";
-
-export default function Header() {
+interface Props {
+  setShowHowItWorksModal: (show: boolean) => void;
+}
+export default function Header({ setShowHowItWorksModal }: Props) {
   const t = useTranslations("Header");
   const locale = useLocale();
   function handleScroll() {
@@ -35,7 +37,10 @@ export default function Header() {
             </div>
           </div>
           <div className="flex gap-12 max-md:gap-4 max-md:flex-col max-md:items-center">
-            <button className="px-5 py-3 flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 font-semibold rounded-lg shadow hover:bg-gray-300 dark:hover:bg-gray-600 max-md:px-4 max-md:py-3 max-md:text-sm">
+            <button
+              className="px-5 py-3 flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 font-semibold rounded-lg shadow hover:bg-gray-300 dark:hover:bg-gray-600 max-md:px-4 max-md:py-3 max-md:text-sm"
+              onClick={() => setShowHowItWorksModal(true)}
+            >
               <span className="mr-2">How It Works</span>{" "}
               {/* Added span for better spacing */}
               <FaQuestion className=" " size={17} />

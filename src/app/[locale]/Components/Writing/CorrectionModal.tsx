@@ -49,7 +49,6 @@ export default function CorrectionModal({
     return () => window.removeEventListener("keydown", handleEscape);
   }, [onClose]);
   const hasGrammarTips = result.grammarTips.length > 0;
-  const hasMissingWords = result.missingWords.length > 0;
   const locale = useLocale();
   return (
     <div
@@ -109,7 +108,7 @@ export default function CorrectionModal({
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="mt-6 px-6 py-2 bg-blue-100 dark:bg-blue-900 dark:text-white text-black  rounded-lg font-medium hover:opacity-90 transition-opacity"
+            className="mt-6 px-6 py-2 bg-blue-100 dark:bg-blue-900 dark:text-white text-black  rounded-lg  hover:opacity-90 transition-opacity"
           >
             Got it
           </button>

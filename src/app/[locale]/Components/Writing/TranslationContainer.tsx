@@ -85,7 +85,7 @@ export default function WritingAssistant() {
         <button
           onClick={handleAnalyzeText}
           disabled={text.length < 300 || isLoading}
-          className={`mt-2    px-6 py-3 rounded-lg font-semibold transition-colors ${
+          className={`mt-2    px-6 py-3 rounded-lg  transition-colors ${
             text.length >= 300 && !isLoading
               ? "bg-blue-100 text-black   dark:bg-blue-900 dark:text-white"
               : "bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed"
