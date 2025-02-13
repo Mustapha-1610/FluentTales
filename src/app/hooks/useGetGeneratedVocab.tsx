@@ -9,12 +9,12 @@ export function useGetGeneratedVerbs() {
   const [vocabulary, setVocabulary] = useState<VocabularyItem | null>(null);
   const locale = useLocale();
 
-  const [previous_generation, setPreviousGeneration] =
-    useState<VocabularyItem | null>(null);
+  const [previous_generations, setPreviousGenerations] = useState<
+    VocabularyItem[]
+  >([]);
 
   const generateVocabulary = async () => {
     if (!theme.trim()) return;
-
     setIsLoading(true);
     setError(null);
 
@@ -23,7 +23,7 @@ export function useGetGeneratedVerbs() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          previous_generation,
+          previous_generations,
           theme,
           locale:
             locale === "en" ? "English" : locale === "ar" ? "Arabic" : "French",
@@ -31,8 +31,14 @@ export function useGetGeneratedVerbs() {
       });
 
       const data = await response.json();
+
       if (data.success) {
         setVocabulary(data.data);
+        previous_generations &&
+          setPreviousGenerations((prev) => {
+            const newHistory = [data.data.nouns, ...prev!].slice(0, 2);
+            return newHistory;
+          });
       } else {
         setError("Error generating vocabulary");
       }

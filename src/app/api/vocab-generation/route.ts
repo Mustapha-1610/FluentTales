@@ -12,57 +12,51 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    const { previous_generation, theme, locale } = await req.json();
+    const { previous_generations, theme, locale } = await req.json();
+    const previousWords = previous_generations.flatMap((gen: any) =>
+      gen.map((word: any) => word.word)
+    );
 
     const aiPrompt = `
-Generate German vocabulary related to the theme: "${theme}" for german learners.
+Generate German vocabulary related to the theme: "${theme}" for German learners.
 Include:
-- 10 nouns with article (der/die/das), plural form, translation in this language : ${locale}, and example sentence
-- 10 verbs in infinitive form with translation in this language : ${locale} and example sentence
-- 6 useful phrases related to the theme with translation in this language : ${locale}
+- 10 nouns with article (der/die/das), plural form, translation in ${locale}, and an example sentence
+- 10 verbs in infinitive form with translation in ${locale} and an example sentence
+- 6 useful phrases related to the theme with translation in ${locale}
 
-Format output as JSON exactly following this structure:
+**Important Rules:**
+- Do NOT include words from the following list: ${
+      previousWords.length > 0 ? previousWords.join(", ") : "none"
+    }
+- If no more new words exist, you may include previous ones, but prioritize new words.
+- Ensure all words are thematically relevant.
+- Provide grammatically correct example sentences suitable for German learners.
+- Format the response as JSON using the exact structure:
+
 {
   "nouns": [
-    {
-      "word": "Haus",
-      "article": "das",
-      "plural": "Häuser",
-      "translation": "house",
-      "example": "Das Haus ist groß."
-    }
+    { "word": "Haus", "article": "das", "plural": "Häuser", "translation": "house", "example": "Das Haus ist groß." }
   ],
   "verbs": [
-    {
-      "word": "gehen",
-      "translation": "to go",
-      "example": "Ich gehe zur Schule."
-    }
+    { "word": "gehen", "translation": "to go", "example": "Ich gehe zur Schule." }
   ],
   "phrases": [
-    {
-      "german": "Wo ist die nächste Bushaltestelle?",
-      "translation": "Where is the nearest bus stop?"
-    }
+    { "german": "Wo ist die nächste Bushaltestelle?", "translation": "Where is the nearest bus stop?" }
   ]
 }
 
 Ensure:
-- All words/phrases are relevant to the theme
-- Examples use simple grammar appropriate for most german level's
-- No markdown formatting, only valid JSON
-- Gender articles are exactly der/die/das
-- Plural forms are correctly spelled
-- always generate 6 phrases, 10 verbs and phrases
-- when you generate the word generate it alone without its article leave the article for its proper json variable
-- if there is a previous generation in this varible : ${previous_generation} different then null, then try to generate newer things different then it if possible.
+- **No Markdown formatting** (only JSON).
+- **Correct noun genders (der/die/das)**.
+- **Properly conjugated plural forms**.
+- **Always generate 10 nouns, 10 verbs, and 6 phrases**.
+- **The word field should contain only the word (no article)**.
 `;
 
     const result = await model.generateContent(aiPrompt);
     const response: any = result.response;
     const textResponse = response.candidates[0].content.parts[0].text;
 
-    // Clean and parse response
     const cleanedResponse = textResponse
       .replace(/```json/g, "")
       .replace(/```/g, "")

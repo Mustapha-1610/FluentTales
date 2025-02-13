@@ -1,5 +1,6 @@
 import { FaBook, FaRegKeyboard } from "react-icons/fa6";
-import { TbTextGrammar } from "react-icons/tb";
+import { PiReadCvLogoFill } from "react-icons/pi";
+import { TbTextGrammar, TbVocabulary } from "react-icons/tb";
 import { useTranslations } from "use-intl";
 
 interface Props {
@@ -44,28 +45,28 @@ export default function DisplayControllers({
           className={getButtonStyles("Comprehension")}
           onClick={() => handleButtonClick("Comprehension")}
         >
-          <FaBook size={20} />
+          <PiReadCvLogoFill size={26} />
           <div>{t("Comprehension")}</div>
         </div>
         <div
           className={getButtonStyles("Vocabulary")}
           onClick={() => handleButtonClick("Vocabulary")}
         >
-          <FaBook size={20} />
+          <TbVocabulary size={24} />
           <div>Vocabulary</div>
         </div>
         <div
           className={getButtonStyles("Grammar")}
           onClick={() => handleButtonClick("Grammar")}
         >
-          <TbTextGrammar size={23} />
+          <TbTextGrammar size={24} />
           <div>{t("Grammar")}</div>
         </div>
         <div
           className={getButtonStyles("Writing")}
           onClick={() => handleButtonClick("Writing")}
         >
-          <FaRegKeyboard size={23} />
+          <FaRegKeyboard size={24} />
           <div>{t("Writing")}</div>
         </div>
       </div>
