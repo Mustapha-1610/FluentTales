@@ -26,7 +26,7 @@ export default function HowItWorksModal({
       {
         title: t("1Title"),
         content: t("1Content"),
-        images: ["/images/how-it-works/1.PNG"],
+        images: ["/images/how-it-works/1.png"],
       },
       {
         title: t("2Title"),
