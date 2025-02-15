@@ -1,3 +1,4 @@
+import { useLocale, useTranslations } from "next-intl";
 import React, { useState, useEffect } from "react";
 import { PulseLoader } from "react-spinners";
 
@@ -18,6 +19,8 @@ const TrueFalseExercise: React.FC<TrueFalseExerciseProps> = ({
   selectedAnswer,
   isAnswered,
 }) => {
+  const t = useTranslations("ComprehensionExercises");
+
   return (
     <div className="dark:bg-gray-700 rounded-xl p-4">
       <div className="space-y-6">
@@ -40,7 +43,7 @@ const TrueFalseExercise: React.FC<TrueFalseExerciseProps> = ({
                   : "bg-gray-100 dark:bg-gray-800"
               }`}
             >
-              True
+              {t("True")}
             </button>
             <button
               onClick={() => onSelectAnswer(number, false)}
@@ -56,7 +59,7 @@ const TrueFalseExercise: React.FC<TrueFalseExerciseProps> = ({
                   : "bg-gray-100 dark:bg-gray-800"
               }`}
             >
-              False
+              {t("False")}
             </button>
           </div>
         </div>
@@ -94,6 +97,8 @@ const TrueFalseExercises: React.FC<TrueFalseExercisesProps> = ({
   const handleCheckAnswers = () => {
     setIsAnswered(true);
   };
+  const t = useTranslations("ComprehensionExercises");
+  const locale = useLocale();
 
   return (
     <div className="relative dark:bg-gray-800 rounded-xl p-5 mt-12  border-2 border-gray-100 shadow-md dark:border-[#1e1e2f]">
@@ -104,8 +109,11 @@ const TrueFalseExercises: React.FC<TrueFalseExercisesProps> = ({
       )}
       {!isLoading && (
         <>
-          <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-6">
-            True/False Exercises
+          <h2
+            dir={locale == "ar" ? "rtl" : "ltr"}
+            className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-6"
+          >
+            {t("True/FalseExercises")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {true_false_exercises.map((item: any, index: number) => (
@@ -125,7 +133,7 @@ const TrueFalseExercises: React.FC<TrueFalseExercisesProps> = ({
             className="w-full px-16 py-4 text-black dark:text-white bg-blue-100 dark:bg-blue-900 rounded-lg mt-6"
             onClick={handleCheckAnswers}
           >
-            Check Answers
+            {t("Check Answers")}
           </button>
         </>
       )}

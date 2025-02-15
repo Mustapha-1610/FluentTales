@@ -49,7 +49,7 @@ export default function DisplayControllers({
           onClick={() => handleButtonClick("Vocabulary")}
         >
           <TbVocabulary size={24} />
-          <div>Vocabulary</div>
+          <div>{t("Vocabulary")}</div>
         </div>
         <div
           className={getButtonStyles("Grammar")}

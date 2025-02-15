@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { ExerciseData } from "./FillInTheBlanksExercise";
 import { grammarCourses } from "@/app/utils/grammarCourses";
 import { SentenceRearrangementExerciseData } from "./SentenceRearrangementExercises";
@@ -52,14 +52,14 @@ export default function GrammarFilter({
       setIsLoading(false);
     }
   }
-
+  const t = useTranslations("GrammarSection");
   return (
     <>
-      <div className="flex mx-auto w-full flex-col items-center justify-center mb-12 mt-12 ">
+      <div className="flex mx-auto w-full flex-col items-center justify-center mb-12 mt-12 whitespace-nowrap">
         <div className="flex  flex-col md:flex-row gap-4 p-4 bg-white dark:bg-gray-900 rounded-2xl shadow-lg w-full max-w-4xl">
           <div className="flex flex-col w-full md:w-auto">
             <label className="text-gray-700 dark:text-gray-300 font-semibold mb-1">
-              Sprachlevel
+              {t("GermanLevel")}
             </label>
             <select
               className="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 border-none focus:ring-2 focus:ring-blue-500"
@@ -79,14 +79,14 @@ export default function GrammarFilter({
 
           <div className="flex flex-col w-full ">
             <label className="text-gray-700 dark:text-gray-300 font-semibold mb-1">
-              Grammatikthema
+              {t("GrammarTheme")}
             </label>
             <select
               className="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 border-none "
               value={selectedTopic}
               onChange={(e) => setSelectedTopic(e.target.value)}
             >
-              <option value="">Wähle ein Thema</option>
+              <option value=""> {t("SelectATheme")} </option>
               {grammarCourses[selectedLevel].map((topic) => (
                 <option key={topic} value={topic}>
                   {topic}
@@ -108,7 +108,7 @@ export default function GrammarFilter({
               disabled={!selectedTopic || isLoading}
             >
               <span className="text-sm text-center md:text-left">
-                {isLoading ? "Generating..." : "Generate Exercises"}
+                {isLoading ? t("Loading") : t("GenerateExercises")}
               </span>
             </button>
           </div>

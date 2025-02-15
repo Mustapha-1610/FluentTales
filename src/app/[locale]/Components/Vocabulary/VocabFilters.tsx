@@ -1,3 +1,5 @@
+import { useLocale, useTranslations } from "next-intl";
+
 interface Props {
   theme: string;
   setTheme: (theme: string) => void;
@@ -12,18 +14,24 @@ export default function VocabFilters({
   theme,
   setTheme,
 }: Props) {
+  const t = useTranslations("VocabSection");
+  const locale = useLocale();
+
   return (
     <>
-      <div className="bg-white dark:bg-gray-900 rounded-xl shadow-md p-4 mb-8 w-full">
+      <div
+        dir={locale == "ar" ? "rtl" : "ltr"}
+        className="bg-white dark:bg-gray-900 rounded-xl shadow-md p-4 mb-8 w-full"
+      >
         <div className="flex flex-col md:flex-row gap-4  w-full">
           <div className="flex-1">
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Theme/Topic
+              {t("Theme")}
             </label>
             <input
               type="text"
               className="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 border-none focus:outline-none"
-              placeholder="e.g., Transportation, Food, School"
+              placeholder={t("Example")}
               value={theme}
               onChange={(e) => setTheme(e.target.value)}
             />
@@ -34,7 +42,7 @@ export default function VocabFilters({
               onClick={() => setShowSuggestionsModal(true)}
               className="flex justify-center items-center gap-2 px-3 py-3 w-full md:w-auto text-gray-800 dark:text-gray-100 bg-blue-50 dark:bg-blue-900 rounded-xl cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-800 transition-colors"
             >
-              Suggestions
+              {t("Suggestions")}
             </button>
             <button
               onClick={generateVocabulary}
@@ -45,7 +53,7 @@ export default function VocabFilters({
                   : "bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-700"
               }`}
             >
-              {isLoading ? "Generating..." : "Generate"}
+              {isLoading ? t("Loading") : t("Generate")}
             </button>
           </div>
         </div>

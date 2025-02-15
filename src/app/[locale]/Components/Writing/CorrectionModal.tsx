@@ -1,5 +1,5 @@
 "use client";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { ReactNode, useEffect } from "react";
 
 // Type definitions
@@ -26,7 +26,6 @@ interface SectionProps {
   className?: string;
 }
 
-// Helper component for consistent section styling
 const Section = ({ title, icon, children, className }: SectionProps) => (
   <div className={className}>
     <div className="flex items-center gap-2 mb-3">
@@ -50,6 +49,7 @@ export default function CorrectionModal({
   }, [onClose]);
   const hasGrammarTips = result.grammarTips.length > 0;
   const locale = useLocale();
+  const t = useTranslations("WritingSection");
   return (
     <div
       dir={locale == "ar" ? "rtl" : "ltr"}
@@ -60,7 +60,7 @@ export default function CorrectionModal({
           {/* Modal Header */}
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-semibold text-black dark:text-white">
-              Writing Analysis
+              {t("WritingAnalysis")}
             </h2>
             <button
               onClick={onClose}
@@ -71,14 +71,14 @@ export default function CorrectionModal({
           </div>
 
           {/* General Review */}
-          <Section title="General Review" icon="📝">
+          <Section title={t("GeneralReview")} icon="📝">
             <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-gray-700 dark:text-gray-300">
               {result.generalReview}
             </div>
           </Section>
 
           {/* Grammar Tips */}
-          <Section title="Grammar Tips" icon="🔍" className="mt-6">
+          <Section title={t("GrammarTips")} icon="🔍" className="mt-6">
             <div className="space-y-3">
               {hasGrammarTips ? (
                 result.grammarTips.map((tip, index) => (
@@ -98,7 +98,7 @@ export default function CorrectionModal({
               ) : (
                 <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg text-center">
                   <p className="text-green-800 dark:text-green-200">
-                    🎉 No grammar issues found! Perfect usage!
+                    {t("Noissues")}
                   </p>
                 </div>
               )}
@@ -110,7 +110,7 @@ export default function CorrectionModal({
             onClick={onClose}
             className="mt-6 px-6 py-2 bg-blue-100 dark:bg-blue-900 dark:text-white text-black  rounded-lg  hover:opacity-90 transition-opacity"
           >
-            Got it
+            {t("GotIt")}
           </button>
         </div>
       </div>

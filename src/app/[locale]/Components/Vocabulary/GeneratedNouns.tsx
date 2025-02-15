@@ -1,3 +1,5 @@
+import { useLocale, useTranslations } from "next-intl";
+
 interface Props {
   noun: {
     word: string;
@@ -8,9 +10,12 @@ interface Props {
   };
 }
 export default function GeneratedNouns({ noun }: Props) {
+  const t = useTranslations("VocabSection");
+  const locale = useLocale();
+
   return (
     <>
-      <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+      <div className="  p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
         <div className="flex items-baseline gap-2 mb-2">
           <span
             className={` capitalize text-lg font-semibold ${
@@ -25,12 +30,17 @@ export default function GeneratedNouns({ noun }: Props) {
           </span>
           <span className="text-xl dark:text-white">{noun.word}</span>
         </div>
-        <p className="text-gray-600 dark:text-gray-300 text-sm">
-          Plural: <span className="font-medium">{noun.plural}</span>
+        <p
+          dir={locale == "ar" ? "rtl" : "ltr"}
+          className="text-gray-600 dark:text-gray-300 text-sm"
+        >
+          {t("Plural")} <span className="font-medium">{noun.plural}</span>
           <br />
-          Translation: <span className="font-medium">{noun.translation}</span>
+          {t("Translation")}{" "}
+          <span className="font-medium">{noun.translation}</span>
           <br />
-          Example: <span className="italic">{noun.example}</span>
+          {t("ExampleTranslations")}{" "}
+          <span className="italic">{noun.example}</span>
         </p>
       </div>
     </>

@@ -22,12 +22,15 @@ export default function Header({ setShowHowItWorksModal }: Props) {
     }
   }
   return (
-    <div className="px-11 max-md:px-5 max-md:max-w-full">
+    <div
+      dir={locale == "ar" ? "rtl" : "ltr"}
+      className="px-11 max-md:px-5 max-md:max-w-full"
+    >
       <div className="flex gap-4 max-md:flex-col max-md:items-center">
         <div className="flex flex-col w-[41%] max-md:w-full max-md:text-center">
           <div className="flex flex-col mb-14 mt-32 text-gray-800 dark:text-gray-200 max-md:mt-10">
             <div className="self-start text-4xl font-bold leading-none max-md:self-center">
-              {t("title")}
+              Fluent Tales
             </div>
             <div
               dir={locale == "ar" ? "rtl" : "ltr"}
@@ -41,17 +44,13 @@ export default function Header({ setShowHowItWorksModal }: Props) {
               className="px-5 py-3 flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 font-semibold rounded-lg shadow hover:bg-gray-300 dark:hover:bg-gray-600 max-md:px-4 max-md:py-3 max-md:text-sm"
               onClick={() => setShowHowItWorksModal(true)}
             >
-              <span className="mr-2">How It Works</span>{" "}
-              {/* Added span for better spacing */}
-              <FaQuestion className=" " size={17} />
+              {t("HowItWorks")}
             </button>
             <button
               onClick={handleScroll}
               className="px-5 py-3 flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 font-semibold rounded-lg shadow hover:bg-gray-300 dark:hover:bg-gray-600 max-md:px-4 max-md:py-3 max-md:text-sm"
             >
-              <span className="mr-2">Lets Start</span>{" "}
-              {/* Added span for better spacing */}
-              <TbConfetti className="" size={20} />
+              {t("LetsStart")}
             </button>
           </div>
         </div>

@@ -4,6 +4,7 @@ import GeneratedStory from "./GeneratedStoryContainer";
 import ComprehensionExercises from "./ComprehensionExercises";
 import GenerateExercises from "../../FunctionalityButtonsComponents/GenerateExercises";
 import TrueFalseExercises from "./TrueFalseExercises";
+import { useLocale } from "next-intl";
 
 export default function GeneratedContentContainer() {
   const [story, setStory] = useState<string | null>(null);
@@ -49,6 +50,7 @@ export default function GeneratedContentContainer() {
       setLoading_True_False_Exercises(false);
     }
   }
+
   return (
     <>
       <div

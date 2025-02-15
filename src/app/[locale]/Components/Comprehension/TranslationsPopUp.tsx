@@ -1,4 +1,5 @@
 import { TranslationData } from "@/app/hooks/useTranslations";
+import { useTranslations } from "next-intl";
 import { FaExclamationTriangle } from "react-icons/fa";
 import { FaLanguage } from "react-icons/fa6";
 import { PulseLoader } from "react-spinners";
@@ -20,6 +21,7 @@ export default function TranslationPopUp({
   error,
   isFetching,
 }: Props) {
+  const t = useTranslations("ComprehensionExercises");
   return (
     <>
       <div
@@ -32,7 +34,7 @@ export default function TranslationPopUp({
       >
         <div className="flex items-center justify-between mb-2">
           <h4 className="font-bold text-base flex items-center">
-            Translation <FaLanguage className="ml-2 text-blue-500" />
+            {t("Translation")} <FaLanguage className="ml-2 text-blue-500" />
           </h4>
         </div>
         {error ? (
@@ -45,11 +47,11 @@ export default function TranslationPopUp({
           </div>
         ) : translationData ? (
           <>
-            <p className="font-bold">Word/Text:</p>
+            <p className="font-bold"> {t("Word")} </p>
             <p className="mb-2">{selectedText}</p>
-            <p className="font-bold">Translation:</p>
+            <p className="font-bold">{t("Translation")}:</p>
             <p className="mb-2">{translationData.translation}</p>
-            <p className="font-bold">Example Sentence:</p>
+            <p className="font-bold">{t("Example")}:</p>
             <p>{translationData.exampleSentence}</p>
           </>
         ) : (

@@ -1,4 +1,5 @@
 import { suggestionTopics } from "@/app/utils/suggestionTopics";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
 interface Props {
@@ -11,13 +12,18 @@ export default function SuggestionModal({
 }: Props) {
   const [selectedSuggestionLevel, setSelectedSuggestionLevel] = useState("A1");
   const [selectedSuggestionTopic, setSelectedSuggestionTopic] = useState("");
+  const t = useTranslations("VocabSection");
+  const locale = useLocale();
 
   return (
     <>
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 w-full max-w-2xl mx-4">
-          <h3 className="text-xl font-bold mb-4 dark:text-white">
-            Vocabulary Theme Suggestions
+          <h3
+            dir={locale == "ar" ? "rtl" : "ltr"}
+            className="text-xl font-bold mb-4 dark:text-white"
+          >
+            {t("VocabularyThemeSuggestions")}
           </h3>
 
           <div className="grid grid-cols-4 gap-4 mb-6">
@@ -59,7 +65,7 @@ export default function SuggestionModal({
               onClick={() => setShowSuggestionsModal(false)}
               className="px-4 py-2 text-gray-600 dark:text-gray-300"
             >
-              Cancel
+              {t("Cancel")}
             </button>
             <button
               onClick={() => {
@@ -75,7 +81,7 @@ export default function SuggestionModal({
               }`}
               disabled={!selectedSuggestionTopic}
             >
-              Confirm
+              {t("Confirm")}
             </button>
           </div>
         </div>

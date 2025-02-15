@@ -1,8 +1,4 @@
 {
-  "Header": {
-    "title": "FluentTales",
-    "about": "Transformez votre apprentissage des langues en une expérience engageante et personnalisée. Créez des histoires uniques qui captent vos intérêts, plongez dans des exercices interactifs et améliorez vos compétences en lecture, écoute et écriture avec des retours en temps réel de l'IA."
-  },
   "Filters": {
     "easy": "facile",
     "intermediate": "intermédiaire",
@@ -26,24 +22,99 @@
     "Story Length": "Longueur de l'histoire",
     "Edit Filters": "Modifier les filtres",
     "Generate": "Générer",
-
     "Enter Context": "Entrez le contexte ou le thème de votre histoire..."
   },
   "Buttons": {
     "confirm": "Confirmer",
     "cancel": "Annuler",
     "loading": "Chargement",
-    "Regenerate Exercises": "Régénérer les exercices",
+    "Regenerate Exercises": "Regénérer les exercices",
     "Generate Exercises": "Générer des exercices"
   },
   "ComprehensionExercises": {
     "title": "Exercices de compréhension",
-    "Check Answers": "Vérifier les réponses"
+    "True/FalseExercises": "Exercices Vrai/Faux",
+    "Check Answers": "Vérifier les réponses",
+    "True": "Vrai",
+    "False": "Faux",
+    "Translation": "Traduction",
+    "Word": "Mot/Texte:",
+    "Example": "Exemple de phrase"
   },
-
   "DisplayControllers": {
     "Comprehension": "Compréhension",
     "Writing": "Écriture",
-    "Grammar": "Grammaire"
+    "Grammar": "Grammaire",
+    "Vocabulary": "Vocabulaire"
+  },
+  "Header": {
+    "title": "Contes Fluides",
+    "HowItWorks": "Comment ça marche",
+    "LetsStart": "Commençons",
+    "about": "Là où votre parcours d'apprentissage des langues se transforme en une expérience engageante et personnalisée. Créez des histoires uniques qui captivent vos intérêts, plongez dans des exercices interactifs et améliorez vos compétences en lecture, écoute et écriture avec des commentaires en temps réel de l'IA."
+  },
+  "WritingSection": {
+    "YourGermanLevel": "Votre niveau d'allemand",
+    "YourText": "Votre texte",
+    "GenerateAiReview": "Générer une revue par IA",
+    "Loading": "Analyse en cours...",
+    "WritingAnalysis": "Analyse d'écriture",
+    "GeneralReview": "Revue générale",
+    "GrammarTips": "Conseils de grammaire",
+    "GotIt": "Compris",
+    "Minimum": "Minimum 300 caractères requis",
+    "Write": "Écrivez votre texte en allemand ici...",
+    "Noissues": "🎉 Aucun problème de grammaire trouvé! Utilisation parfaite!"
+  },
+  "GrammarSection": {
+    "GermanLevel": "Niveau d'allemand",
+    "GrammarTheme": "Thème de grammaire",
+    "GenerateExercises": "Générer des exercices",
+    "Loading": "Génération en cours...",
+    "FillInTheBlanks": "Remplissez les blancs",
+    "ShowAnswers": "Afficher les réponses",
+    "SentenceRearrangement": "Réorganisation de phrases",
+    "YourSentence": "Votre phrase:",
+    "Select": "Sélectionner",
+    "SelectATheme": "Sélectionnez un thème",
+    "Choose": "Choisissez les mots dans le bon ordre.",
+    "Great": "Super, votre phrase est correcte!",
+    "Correct": "Mot correct:"
+  },
+  "VocabSection": {
+    "RecommendedVideos": "Vidéos recommandées",
+    "VocabularyGenerator": "Générateur de vocabulaire",
+    "Suggestions": "Suggestions",
+    "VocabularyThemeSuggestions": "Suggestions de thèmes de vocabulaire",
+    "Generate": "Générer",
+    "Loading": "Génération en cours...",
+    "Cancel": "Annuler",
+    "Confirm": "Confirmer",
+    "Nouns": "Noms",
+    "Verbs": "Verbes",
+    "UsefulPhrases": "Phrases utiles",
+    "Plural": "Pluriel:",
+    "Translation": "Traduction:",
+    "ExampleTranslations": "Exemple:",
+    "Example": "ex: Transport, Nourriture, École",
+    "Theme": "Thème/Sujet",
+    "NoVideos": "Aucune vidéo disponible."
+  },
+
+  "HowItWorksModal": {
+    "1Title": "Bienvenue sur Fluent Tales",
+    "1Content": "Fluent Tales est un outil complémentaire pour améliorer votre apprentissage de l'allemand. Il propose des exercices interactifs pour soutenir vos études, mais ce n'est pas un cours de langue complet. Alimenté par une IA publique, le contenu peut parfois contenir des erreurs mineures. Si vous rencontrez des problèmes, veuillez les signaler ou régénérer le matériel. Explorez les modules et profitez de l'amélioration de votre allemand.",
+    "2Title": "Module de Compréhension",
+    "2Content": "Personnalisez les textes générés par l'IA en sélectionnant la difficulté, la longueur et le thème. Surlignez les mots inconnus pour voir des traductions instantanées. Après la lecture, générez des exercices de compréhension, y compris des questions vrai/faux, pour tester votre compréhension. Vous pouvez régénérer les exercices si nécessaire.",
+    "3Title": "Constructeur de Vocabulaire",
+    "3Content": "Améliorez votre vocabulaire avec des vidéos sélectionnées d'Easy German et des listes de mots générées par l'IA. Entrez un thème pour recevoir des noms, des verbes et des phrases utiles pertinents. Le vocabulaire généré vous aide à apprendre en contexte et soutient la communication quotidienne. Les vidéos et les listes de mots complètent votre parcours d'apprentissage. Construisez votre lexique avec des sujets variés.",
+    "4Title": "Maîtrise de la Grammaire",
+    "4Content": "Sélectionnez votre niveau d'allemand et un sujet grammatical spécifique pour générer des exercices sur mesure. Entraînez-vous avec des exercices à trous et des réorganisations de phrases. Vérifiez vos réponses et survolez pour voir les réponses correctes et des explications détaillées. Vous pouvez également surligner le texte pour des traductions instantanées. Ces exercices fournissent des conseils clairs pour améliorer votre grammaire.",
+    "5Title": "Assistant d'Écriture",
+    "5Content": "Rédigez un texte en allemand d'au moins 300 caractères et soumettez-le pour une revue par l'IA. Recevez des commentaires personnalisés avec des corrections grammaticales, des suggestions de vocabulaire et des conseils de style. Le système offre des recommandations spécifiques pour vous aider à affiner vos compétences en écriture. Utilisez cet outil pour améliorer efficacement votre expression écrite. Profitez du processus d'amélioration de votre écriture.",
+    "Previous": "Précédent",
+    "Skip Tutorial": "Passer le tutoriel",
+    "Get Started": "Commencer",
+    "Next": "Suivant"
   }
 }

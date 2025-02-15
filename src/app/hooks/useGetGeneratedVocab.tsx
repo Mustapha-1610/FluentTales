@@ -33,6 +33,7 @@ export function useGetGeneratedVerbs() {
       const data = await response.json();
 
       if (data.success) {
+        console.log(data.data);
         setVocabulary(data.data);
         previous_generations &&
           setPreviousGenerations((prev) => {

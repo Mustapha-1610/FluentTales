@@ -1,4 +1,5 @@
 "use client";
+import { useLocale, useTranslations } from "next-intl";
 import { useState, useEffect } from "react";
 
 interface HowItWorksModalProps {
@@ -17,40 +18,51 @@ export default function HowItWorksModal({
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [loadedImages, setLoadedImages] = useState<boolean[]>([]);
-
+  const t = useTranslations("HowItWorksModal");
   const slides: Slide[] = [
     {
-      title: "Welcome to Fluent Tales",
-      content:
-        "Discover our comprehensive German learning tools featuring Comprehension, Vocabulary, Grammar, and Writing modules - all accessible through our intuitive dashboard.",
+      title: t("1Title"),
+      content: t("1Content"),
       images: ["/images/how-it-works/1.PNG"],
     },
     {
-      title: "Comprehension Module",
-      content:
-        "Customize generated texts by selecting your level, text length, and theme. Generate tailored reading exercises with true/false questions to test understanding.",
-      images: ["/images/how-it-works/10.PNG", "/images/how-it-works/2.PNG"],
+      title: t("2Title"),
+      content: t("2Content"),
+      images: [
+        "/images/how-it-works/2.PNG",
+        "/images/how-it-works/3.PNG",
+        "/images/how-it-works/4.PNG",
+        "/images/how-it-works/5.PNG",
+        "/images/how-it-works/6.PNG",
+      ],
     },
     {
-      title: "Vocabulary Builder",
-      content:
-        "Explore our dual approach: Watch curated Easy German videos for contextual learning, then generate theme-specific vocabulary lists with nouns, verbs, and practical examples.",
-      images: ["/images/how-it-works/2.PNG", "/images/how-it-works/2.PNG"],
+      title: t("3Title"),
+      content: t("3Content"),
+      images: [
+        "/images/how-it-works/7.PNG",
+        "/images/how-it-works/8.PNG",
+        "/images/how-it-works/9.PNG",
+        "/images/how-it-works/10.PNG",
+      ],
     },
     {
-      title: "Grammar Mastery",
-      content:
-        "Select your CEFR level and specific grammar topics to receive AI-generated exercises with instant feedback. Hover over completed answers for detailed explanations.",
-      images: ["/images/how-it-works/2.PNG", "/images/how-it-works/2.PNG"],
+      title: t("4Title"),
+      content: t("4Content"),
+      images: [
+        "/images/how-it-works/11.PNG",
+        "/images/how-it-works/12.PNG",
+        "/images/how-it-works/13.PNG",
+        "/images/how-it-works/14.PNG",
+      ],
     },
     {
-      title: "Writing Assistant",
-      content:
-        "Compose German texts and receive AI-powered analysis with grammar tips, vocabulary suggestions, and style improvements tailored to your proficiency level.",
-      images: ["/images/how-it-works/2.PNG", "/images/how-it-works/2.PNG"],
+      title: t("5Title"),
+      content: t("5Content"),
+      images: ["/images/how-it-works/15.PNG", "/images/how-it-works/16.PNG"],
     },
   ];
+  const locale = useLocale();
 
   useEffect(() => {
     if (isPaused || slides[currentSlide].images.length <= 1) return;
@@ -58,13 +70,12 @@ export default function HowItWorksModal({
       setCurrentImageIndex(
         (prev) => (prev + 1) % slides[currentSlide].images.length
       );
-    }, 3000);
+    }, 2300);
     return () => clearInterval(interval);
   }, [currentSlide, isPaused, slides]);
 
   useEffect(() => {
     setCurrentImageIndex(0);
-    setLoadedImages([]);
   }, [currentSlide]);
 
   const handleNextSlide = () => {
@@ -109,7 +120,6 @@ export default function HowItWorksModal({
                   src={img}
                   alt={`${slides[currentSlide].title} ${idx + 1}`}
                   className="w-full h-full object-cover p-4"
-                  onLoad={() => setLoadedImages((prev) => [...prev, true])}
                 />
               </div>
             ))}
@@ -128,7 +138,10 @@ export default function HowItWorksModal({
             )}
           </div>
 
-          <div className="text-center px-4">
+          <div
+            dir={locale == "ar" ? "rtl" : "ltr"}
+            className="text-center px-4"
+          >
             <h3 className="text-2xl font-bold mb-4 dark:text-white">
               {slides[currentSlide].title}
             </h3>
@@ -147,7 +160,7 @@ export default function HowItWorksModal({
                   : "bg-gray-200 dark:bg-gray-700 text-gray-400 cursor-not-allowed"
               }`}
             >
-              Previous
+              {t("Previous")}
             </button>
 
             <div className="flex gap-4">
@@ -155,13 +168,15 @@ export default function HowItWorksModal({
                 onClick={() => setShowHowItWorksModal(false)}
                 className="px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100"
               >
-                Skip Tutorial
+                {t("Skip Tutorial")}
               </button>
               <button
                 onClick={handleNextSlide}
                 className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
               >
-                {currentSlide === slides.length - 1 ? "Get Started" : "Next"}
+                {currentSlide === slides.length - 1
+                  ? t("Get Started")
+                  : t("Next")}
               </button>
             </div>
           </div>

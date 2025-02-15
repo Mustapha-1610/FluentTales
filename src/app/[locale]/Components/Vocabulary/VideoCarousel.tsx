@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { VideoData } from "@/app/utils/videoData";
+import { useTranslations } from "next-intl";
 
 function getRandomItems(array: string[], count = 3): string[] {
   const result = new Set<string>();
@@ -30,9 +31,9 @@ export default function VideoCarousel() {
       setCurrentIndex(currentIndex - 1);
     }
   };
-
+  const t = useTranslations("VocabSection");
   if (randomVideos.length === 0) {
-    return <p className="text-center text-gray-500">No videos available.</p>;
+    return <p className="text-center text-gray-500"> {t("NoVideos")} </p>;
   }
 
   return (

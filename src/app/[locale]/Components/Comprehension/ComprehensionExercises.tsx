@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import React, { useState, useEffect } from "react";
 import { PulseLoader } from "react-spinners";
 
@@ -133,6 +133,7 @@ const ComprehensionExercises: React.FC<ComprehensionExercisesProps> = ({
     setIsAnswered(true);
   };
   const t = useTranslations("ComprehensionExercises");
+  const locale = useLocale();
 
   return (
     <div className="relative  dark:bg-gray-800 rounded-xl  p-5 border-2 border-gray-100 shadow-md dark:border-[#1e1e2f]">
@@ -143,7 +144,10 @@ const ComprehensionExercises: React.FC<ComprehensionExercisesProps> = ({
       )}
       {!isLoading && (
         <>
-          <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-6">
+          <h2
+            dir={locale == "ar" ? "rtl" : "ltr"}
+            className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-6"
+          >
             {t("title")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

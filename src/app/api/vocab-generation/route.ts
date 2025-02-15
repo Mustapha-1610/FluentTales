@@ -16,13 +16,13 @@ export async function POST(req: NextRequest) {
     const previousWords = previous_generations.flatMap((gen: any) =>
       gen.map((word: any) => word.word)
     );
-
+    console.log(locale);
     const aiPrompt = `
 Generate German vocabulary related to the theme: "${theme}" for German learners.
 Include:
-- 10 nouns with article (der/die/das), plural form, translation in ${locale}, and an example sentence
-- 10 verbs in infinitive form with translation in ${locale} and an example sentence
-- 6 useful phrases related to the theme with translation in ${locale}
+- 10 nouns with article (der/die/das), plural form, translation, and an example sentence all translated to : ${locale}
+- 10 verbs in infinitive form with translation and an example sentence translated to : ${locale}
+- 6 useful phrases related to the theme with translation in this language : ${locale}
 
 **Important Rules:**
 - Do NOT include words from the following list: ${
@@ -35,13 +35,13 @@ Include:
 
 {
   "nouns": [
-    { "word": "Haus", "article": "das", "plural": "Häuser", "translation": "house", "example": "Das Haus ist groß." }
+    { "word": "Haus", "article": "das", "plural": "Häuser", "translation": "word translation in this language ${locale}", "example": "Example how to use this noun in german, no need to translate it" }
   ],
   "verbs": [
-    { "word": "gehen", "translation": "to go", "example": "Ich gehe zur Schule." }
+    { "word": "gehen", "translation": "word translation in this language ${locale}", "example": "Example how to use this verb in german , no need to translate it" }
   ],
   "phrases": [
-    { "german": "Wo ist die nächste Bushaltestelle?", "translation": "Where is the nearest bus stop?" }
+    { "german": "Wo ist die nächste Bushaltestelle?", "translation": "translation in this language ${locale}" }
   ]
 }
 

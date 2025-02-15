@@ -1,8 +1,4 @@
 {
-  "Header": {
-    "title": "FluentTales",
-    "about": "Where your language learning journey transforms into an engaging and personalized experience. Create unique stories that capture your interests, dive into interactive exercises, and improve your reading, listening, and writing skills with real-time AI feedback."
-  },
   "Filters": {
     "easy": "easy",
     "intermediate": "intermediate",
@@ -37,11 +33,87 @@
   },
   "ComprehensionExercises": {
     "title": "Comprehension Exercises",
-    "Check Answers": "Check Answers"
+    "True/FalseExercises": "True/False Exercises",
+    "Check Answers": "Check Answers",
+    "True": "True",
+    "False": "False",
+    "Translation": "Translation",
+    "Word": "Word/Text:",
+    "Example": "Example Sentence"
   },
   "DisplayControllers": {
     "Comprehension": "Comprehension",
     "Writing": "Writing",
-    "Grammar": "Grammar"
+    "Grammar": "Grammar",
+    "Vocabulary": "Vocabulary"
+  },
+  "Header": {
+    "title": "FluentTales",
+    "HowItWorks": "How It Works",
+    "LetsStart": "Let's Start",
+    "about": "Where your language learning journey transforms into an engaging and personalized experience. Create unique stories that capture your interests, dive into interactive exercises, and improve your reading, listening, and writing skills with real-time AI feedback."
+  },
+  "WritingSection": {
+    "YourGermanLevel": "Your German Level",
+    "YourText": "Your Text",
+    "GenerateAiReview": "Generate AI Review",
+    "Loading": "Analyzing ...",
+    "WritingAnalysis": "Writing Analysis",
+    "GeneralReview": "General Review",
+    "GrammarTips": "Grammar Tips",
+    "GotIt": "Got It",
+    "Minimum": "Minimum 300 characters required",
+    "Write": "Write your German text here...",
+    "Noissues": "🎉 No grammar issues found! Perfect usage!"
+  },
+  "GrammarSection": {
+    "GermanLevel": "German Level",
+    "GrammarTheme": "Grammar Theme",
+    "GenerateExercises": "Generate Exercises",
+    "Loading": "Generating ...",
+    "FillInTheBlanks": "Fill In The Blanks",
+    "ShowAnswers": "Show Answers",
+    "SentenceRearrangement": "Sentence Rearrangement",
+    "YourSentence": "Your Sentence:",
+    "Select": "Select",
+    "SelectATheme": "Select a Theme",
+    "Choose": "Choose the words in the correct order.",
+    "Great": "Great, Your Sentence Is Correct!",
+    "Correct": "Correct Word:"
+  },
+  "VocabSection": {
+    "RecommendedVideos": "Recommended Videos",
+    "VocabularyGenerator": "Vocabulary Generator",
+    "Suggestions": "Suggestions",
+    "VocabularyThemeSuggestions": "Vocabulary Theme Suggestions",
+    "Generate": "Generate",
+    "Loading": "Generating ...",
+    "Cancel": "Cancel",
+    "Confirm": "Confirm",
+    "Nouns": "Nouns",
+    "Verbs": "Verbs",
+    "UsefulPhrases": "Useful Phrases",
+    "Plural": "Plural:",
+    "Translation": "Translation:",
+    "ExampleTranslations": "Example:",
+    "Example": "e.g., Transportation, Food, School",
+    "Theme": "Theme/Topic",
+    "NoVideos": "No videos available."
+  },
+  "HowItWorksModal": {
+    "1Title": "Welcome to Fluent Tales",
+    "1Content": "Fluent Tales is a supplementary tool to enhance your German learning. It offers interactive exercises to support your study but is not a full language course. Powered by a public AI, the content may sometimes contain minor errors. If you experience issues, please report them or regenerate the material. Explore the modules and enjoy improving your German.",
+    "2Title": "Comprehension Module",
+    "2Content": "Customize AI-generated texts by selecting difficulty, length, and theme. Highlight unfamiliar words to see instant translations. After reading, generate comprehension exercises, including true/false questions, to test your understanding. You can regenerate exercises if needed.",
+    "3Title": "Vocabulary Builder",
+    "3Content": "Enhance your vocabulary with curated Easy German videos and AI-generated word lists. Enter a theme to receive relevant nouns, verbs, and useful phrases. The generated vocabulary helps you learn in context and supports everyday communication. Both videos and word lists complement your learning journey. Build your lexicon with diverse topics.",
+    "4Title": "Grammar Mastery",
+    "4Content": "Select your German level and a specific grammar topic to generate tailored exercises. Practice with fill-in-the-blank and sentence rearrangement tasks. Check your answers and hover for correct responses and detailed explanations. You can also highlight text for instant translations. These exercises provide clear guidance to improve your grammar.",
+    "5Title": "Writing Assistant",
+    "5Content": "Compose a German text of at least 300 characters and submit it for AI review. Receive personalized feedback with grammar corrections, vocabulary suggestions, and style tips. The system offers specific recommendations to help refine your writing skills. Use this tool to enhance your written expression effectively. Enjoy the process of improving your writing.",
+    "Previous": "Previous",
+    "Skip Tutorial": "Skip Tutorial",
+    "Get Started": "Get Started",
+    "Next": "Next"
   }
 }

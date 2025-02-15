@@ -5,6 +5,7 @@ import GeneratedNouns from "./GeneratedNouns";
 import VocabFilters from "./VocabFilters";
 import GeneratedVerbs from "./GeneratedVerbs";
 import { useGetGeneratedVerbs } from "@/app/hooks/useGetGeneratedVocab";
+import { useLocale, useTranslations } from "next-intl";
 
 export interface VocabularyItem {
   nouns: Array<{
@@ -29,20 +30,27 @@ export default function VocabularyGenerator() {
   const { error, generateVocabulary, isLoading, setTheme, theme, vocabulary } =
     useGetGeneratedVerbs();
   const [showSuggestionsModal, setShowSuggestionsModal] = useState(false);
-
+  const t = useTranslations("VocabSection");
+  const locale = useLocale();
   return (
     <div className=" mx-auto p-4 w-full mt-6 ">
       <div className="  mb-8 space-y-4">
-        <div className="flex items-center gap-2">
+        <div
+          dir={locale == "ar" ? "rtl" : "ltr"}
+          className="flex items-center gap-2"
+        >
           <h2 className="text-2xl font-bold dark:text-white">
-            Learning Videos
+            {t("RecommendedVideos")}
           </h2>
         </div>
         <VideoCarousel />
       </div>
-      <div className="flex items-center gap-2 mb-4">
+      <div
+        dir={locale == "ar" ? "rtl" : "ltr"}
+        className="flex items-center gap-2 mb-4"
+      >
         <h2 className="text-2xl font-bold dark:text-white">
-          Vocabulary Generator
+          {t("VocabularyGenerator")}
         </h2>
       </div>
       <VocabFilters
@@ -56,8 +64,11 @@ export default function VocabularyGenerator() {
       {vocabulary && (
         <div className="space-y-8">
           <div className="bg-white dark:bg-gray-900 rounded-xl shadow-md p-6">
-            <h2 className="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">
-              Nouns
+            <h2
+              dir={locale == "ar" ? "rtl" : "ltr"}
+              className="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400"
+            >
+              {t("Nouns")}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
               {vocabulary.nouns.map((noun, index) => (
@@ -66,9 +77,12 @@ export default function VocabularyGenerator() {
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-md p-6">
+          <div
+            dir={locale == "ar" ? "rtl" : "ltr"}
+            className="bg-white dark:bg-gray-900 rounded-xl shadow-md p-6"
+          >
             <h2 className="text-2xl font-bold mb-4 text-green-600 dark:text-green-400">
-              Verbs
+              {t("Verbs")}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
               {vocabulary.verbs.map((verb, index) => (
@@ -80,7 +94,7 @@ export default function VocabularyGenerator() {
           {/* Phrases Section */}
           <div className="bg-white dark:bg-gray-900 rounded-xl shadow-md p-6">
             <h2 className="text-2xl font-bold mb-4 text-purple-600 dark:text-purple-400">
-              Useful Phrases
+              {t("UsefulPhrases")}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {vocabulary.phrases.map((phrase, index) => (

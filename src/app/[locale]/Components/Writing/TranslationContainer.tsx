@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import CorrectionModal from "./CorrectionModal";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function WritingAssistant() {
   const [text, setText] = useState("");
@@ -36,14 +36,18 @@ export default function WritingAssistant() {
       setIsLoading(false);
     }
   };
+  const t = useTranslations("WritingSection");
 
   return (
-    <div className="flex flex-col w-full  mx-auto p-4">
+    <div
+      dir={locale == "ar" ? "rtl" : "ltr"}
+      className="flex flex-col w-full  mx-auto p-4"
+    >
       <div className="flex flex-col gap-4 p-4 bg-white dark:bg-gray-900 rounded-2xl shadow-lg">
         {/* Level Selection */}
         <div className="flex flex-col w-full">
           <label className="text-gray-700 dark:text-gray-300 font-semibold mb-1">
-            You German Level
+            {t("YourGermanLevel")}
           </label>
           <select
             className="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 border-none "
@@ -61,13 +65,13 @@ export default function WritingAssistant() {
         {/* Text Input */}
         <div className="flex flex-col w-full">
           <label className="text-gray-700 dark:text-gray-300 font-semibold mb-1">
-            Your Text
+            {t("YourText")}
           </label>
           <textarea
             className="w-full h-60 px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 border-none  resize-none"
             value={text}
             onChange={(e) => setText(e.target.value)}
-            placeholder="Write your German text here..."
+            placeholder={t("Write")}
           />
           <div className="mt-2 text-sm text-gray-500 dark:text-gray-400">
             <span
@@ -75,9 +79,7 @@ export default function WritingAssistant() {
             >
               {text.length}/300
             </span>
-            {text.length < 300 && (
-              <span className="ml-2">Minimum 300 characters required</span>
-            )}
+            {text.length < 300 && <span className="ml-2">{t("Minimum")}</span>}
           </div>
         </div>
 
@@ -91,7 +93,7 @@ export default function WritingAssistant() {
               : "bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed"
           }`}
         >
-          {isLoading ? "Analyzing..." : "Generate AI Review"}
+          {isLoading ? t("Loading") : t("GenerateAiReview")}
         </button>
 
         {error && <p className="text-red-500 mt-2 text-center">{error}</p>}

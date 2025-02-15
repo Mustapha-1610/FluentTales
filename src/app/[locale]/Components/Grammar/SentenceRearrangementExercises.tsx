@@ -1,4 +1,5 @@
 // SentenceRearrangementExerciseItem.tsx
+import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 
 export interface SentenceRearrangementExerciseData {
@@ -17,14 +18,7 @@ interface SentenceRearrangementExerciseItemProps {
 
 const SentenceRearrangementExerciseItem: React.FC<
   SentenceRearrangementExerciseItemProps
-> = ({
-  exerciseData,
-  exerciseNumber,
-  answer,
-  isChecked,
-  onSelectWord,
-  onRemoveWord,
-}) => {
+> = ({ exerciseData, answer, isChecked, onSelectWord, onRemoveWord }) => {
   // Build the user's sentence from the selected word indices.
   const userSentence = answer
     .map((i) => exerciseData.jumbled_words[i])
@@ -42,7 +36,7 @@ const SentenceRearrangementExerciseItem: React.FC<
   const isAnswerCorrect = exerciseData.valid_sentences.some(
     (valid) => normalizeSentence(valid) === normalizeSentence(userSentence)
   );
-
+  const t = useTranslations("GrammarSection");
   return (
     <div className="dark:bg-gray-700 rounded-xl p-3">
       {/* Available Words */}
@@ -72,7 +66,7 @@ const SentenceRearrangementExerciseItem: React.FC<
       {/* Constructed Sentence */}
       <div className="mb-4">
         <p className="font-medium text-gray-800 dark:text-gray-100 mb-2">
-          Dein Satz:
+          {t("YourSentence")}
         </p>
         {answer.length > 0 ? (
           <div className="flex flex-wrap gap-2">
@@ -88,9 +82,7 @@ const SentenceRearrangementExerciseItem: React.FC<
             ))}
           </div>
         ) : (
-          <p className="text-gray-500">
-            Wähle die Wörter in der richtigen Reihenfolge aus.
-          </p>
+          <p className="text-gray-500">{t("Choose")}</p>
         )}
       </div>
 
@@ -99,16 +91,16 @@ const SentenceRearrangementExerciseItem: React.FC<
         <div className="mt-4">
           {isAnswerCorrect ? (
             <div className="p-4 bg-green-200 dark:bg-green-900 rounded-lg text-green-800 dark:text-green-100 font-medium">
-              Super, dein Satz ist korrekt!
+              {t("Great")}
             </div>
           ) : (
             <div className="space-y-4">
               <div className="p-4 bg-red-200 dark:bg-red-900 rounded-lg text-red-800 dark:text-red-300 font-medium">
-                Deine Antwort:
+                {t("YourSentence")}
                 <div className="mt-2 line-through">{userSentence}</div>
               </div>
               <div className="p-4 bg-green-200 dark:bg-green-900 rounded-lg text-green-800 dark:text-green-100 font-medium">
-                Korrekte Satzstruktur:
+                {t("Correct")}
                 <div className="mt-2">
                   {exerciseData.valid_sentences.map((sentence, idx) => (
                     <div key={idx}>{sentence}</div>
@@ -168,11 +160,11 @@ const SentenceRearrangementExercises: React.FC<
   const handleCheckAnswers = () => {
     setIsChecked(true);
   };
-
+  const t = useTranslations("GrammarSection");
   return (
     <div className="w-full mx-auto p-4">
       <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-6">
-        Sentence Rearrangement
+        {t("SentenceRearrangement")}
       </h2>
       <div className=" w-full mx-auto   p-4  border dark:border-gray-700 rounded-lg shadow-md dark:shadow-gray-700 ">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -199,7 +191,7 @@ const SentenceRearrangementExercises: React.FC<
         disabled={!allCompleted || isChecked}
         onClick={handleCheckAnswers}
       >
-        Antwort überprüfen
+        {t("ShowAnswers")}
       </button>
     </div>
   );
