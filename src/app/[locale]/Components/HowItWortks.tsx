@@ -1,6 +1,6 @@
 "use client";
 import { useLocale, useTranslations } from "next-intl";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 interface HowItWorksModalProps {
   setShowHowItWorksModal: (show: boolean) => void;
@@ -19,50 +19,54 @@ export default function HowItWorksModal({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const t = useTranslations("HowItWorksModal");
-  const slides: Slide[] = [
-    {
-      title: t("1Title"),
-      content: t("1Content"),
-      images: ["/images/how-it-works/1.PNG"],
-    },
-    {
-      title: t("2Title"),
-      content: t("2Content"),
-      images: [
-        "/images/how-it-works/2.PNG",
-        "/images/how-it-works/3.PNG",
-        "/images/how-it-works/4.PNG",
-        "/images/how-it-works/5.PNG",
-        "/images/how-it-works/6.PNG",
-      ],
-    },
-    {
-      title: t("3Title"),
-      content: t("3Content"),
-      images: [
-        "/images/how-it-works/7.PNG",
-        "/images/how-it-works/8.PNG",
-        "/images/how-it-works/9.PNG",
-        "/images/how-it-works/10.PNG",
-      ],
-    },
-    {
-      title: t("4Title"),
-      content: t("4Content"),
-      images: [
-        "/images/how-it-works/11.PNG",
-        "/images/how-it-works/12.PNG",
-        "/images/how-it-works/13.PNG",
-        "/images/how-it-works/14.PNG",
-      ],
-    },
-    {
-      title: t("5Title"),
-      content: t("5Content"),
-      images: ["/images/how-it-works/15.PNG", "/images/how-it-works/16.PNG"],
-    },
-  ];
   const locale = useLocale();
+
+  const slides: Slide[] = useMemo(
+    () => [
+      {
+        title: t("1Title"),
+        content: t("1Content"),
+        images: ["/images/how-it-works/1.PNG"],
+      },
+      {
+        title: t("2Title"),
+        content: t("2Content"),
+        images: [
+          "/images/how-it-works/2.PNG",
+          "/images/how-it-works/3.PNG",
+          "/images/how-it-works/4.PNG",
+          "/images/how-it-works/5.PNG",
+          "/images/how-it-works/6.PNG",
+        ],
+      },
+      {
+        title: t("3Title"),
+        content: t("3Content"),
+        images: [
+          "/images/how-it-works/7.PNG",
+          "/images/how-it-works/8.PNG",
+          "/images/how-it-works/9.PNG",
+          "/images/how-it-works/10.PNG",
+        ],
+      },
+      {
+        title: t("4Title"),
+        content: t("4Content"),
+        images: [
+          "/images/how-it-works/11.PNG",
+          "/images/how-it-works/12.PNG",
+          "/images/how-it-works/13.PNG",
+          "/images/how-it-works/14.PNG",
+        ],
+      },
+      {
+        title: t("5Title"),
+        content: t("5Content"),
+        images: ["/images/how-it-works/15.PNG", "/images/how-it-works/16.PNG"],
+      },
+    ],
+    [t]
+  );
 
   useEffect(() => {
     if (isPaused || slides[currentSlide].images.length <= 1) return;
@@ -79,13 +83,16 @@ export default function HowItWorksModal({
   }, [currentSlide]);
 
   const handleNextSlide = () => {
-    currentSlide < slides.length - 1
-      ? setCurrentSlide((prev) => prev + 1)
-      : setShowHowItWorksModal(false);
+    if (currentSlide < slides.length - 1) {
+      setCurrentSlide((prev) => prev + 1);
+    } else {
+      setShowHowItWorksModal(false);
+    }
   };
 
-  const handlePrevSlide = () =>
+  const handlePrevSlide = () => {
     setCurrentSlide((prev) => Math.max(0, prev - 1));
+  };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">

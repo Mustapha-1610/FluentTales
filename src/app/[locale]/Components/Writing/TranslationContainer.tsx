@@ -31,6 +31,8 @@ export default function WritingAssistant() {
       setAnalysisResult(result);
       setShowModal(true);
     } catch (err) {
+      console.log(err);
+
       setError("Failed to analyze text");
     } finally {
       setIsLoading(false);

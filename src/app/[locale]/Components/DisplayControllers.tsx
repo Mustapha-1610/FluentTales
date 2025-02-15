@@ -1,4 +1,4 @@
-import { FaBook, FaRegKeyboard } from "react-icons/fa6";
+import { FaRegKeyboard } from "react-icons/fa6";
 import { PiReadCvLogoFill } from "react-icons/pi";
 import { TbTextGrammar, TbVocabulary } from "react-icons/tb";
 import { useTranslations } from "use-intl";

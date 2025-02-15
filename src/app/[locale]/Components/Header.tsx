@@ -1,6 +1,4 @@
 import * as React from "react";
-import { FaQuestion } from "react-icons/fa6";
-import { TbConfetti } from "react-icons/tb";
 import { useLocale, useTranslations } from "next-intl";
 interface Props {
   setShowHowItWorksModal: (show: boolean) => void;

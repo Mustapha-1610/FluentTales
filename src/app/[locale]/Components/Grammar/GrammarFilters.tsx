@@ -3,7 +3,6 @@ import { useLocale, useTranslations } from "next-intl";
 import { ExerciseData } from "./FillInTheBlanksExercise";
 import { grammarCourses } from "@/app/utils/grammarCourses";
 import { SentenceRearrangementExerciseData } from "./SentenceRearrangementExercises";
-import VideoCarousel from "../Vocabulary/VideoCarousel";
 
 interface Props {
   setExerciseData: (exerciseData: ExerciseData | null) => void;
@@ -47,6 +46,8 @@ export default function GrammarFilter({
         setError("Error generating exercise.");
       }
     } catch (err) {
+      console.log(err);
+
       setError("Error generating exercise.");
     } finally {
       setIsLoading(false);

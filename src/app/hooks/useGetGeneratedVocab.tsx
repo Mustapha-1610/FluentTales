@@ -33,17 +33,18 @@ export function useGetGeneratedVerbs() {
       const data = await response.json();
 
       if (data.success) {
-        console.log(data.data);
         setVocabulary(data.data);
-        previous_generations &&
+        if (previous_generations) {
           setPreviousGenerations((prev) => {
             const newHistory = [data.data.nouns, ...prev!].slice(0, 2);
             return newHistory;
           });
+        }
       } else {
         setError("Error generating vocabulary");
       }
     } catch (err) {
+      console.log(err);
       setError("Failed to connect to server");
     } finally {
       setIsLoading(false);

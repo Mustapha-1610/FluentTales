@@ -1,8 +1,6 @@
 import { useLocale } from "next-intl";
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { PulseLoader } from "react-spinners";
-import { FaLanguage, FaExclamationTriangle } from "react-icons/fa";
-import { AiOutlineClose } from "react-icons/ai";
 import { useTextTranslation } from "@/app/hooks/useTranslations";
 import TranslationPopUp from "./TranslationsPopUp";
 
