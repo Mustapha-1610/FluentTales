@@ -111,8 +111,9 @@ export default function HowItWorksModal({
         </div>
 
         <div className="flex flex-col items-center">
+          {/* Image Container */}
           <div
-            className="w-full h-80 mb-6 bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden relative"
+            className="w-full h-64 md:h-80 mb-6 bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden relative"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
@@ -126,7 +127,7 @@ export default function HowItWorksModal({
                 <img
                   src={img}
                   alt={`${slides[currentSlide].title} ${idx + 1}`}
-                  className="w-full h-full object-cover p-4"
+                  className="w-full h-full object-contain p-4"
                 />
               </div>
             ))}
@@ -145,23 +146,25 @@ export default function HowItWorksModal({
             )}
           </div>
 
+          {/* Text Content */}
           <div
             dir={locale == "ar" ? "rtl" : "ltr"}
             className="text-center px-4"
           >
-            <h3 className="text-2xl font-bold mb-4 dark:text-white">
+            <h3 className="text-2xl font-bold mb-4 dark:text-white max-md:text-lg">
               {slides[currentSlide].title}
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6 max-md:text-sm">
               {slides[currentSlide].content}
             </p>
           </div>
 
+          {/* Buttons */}
           <div className="flex justify-between w-full mt-6">
             <button
               onClick={handlePrevSlide}
               disabled={currentSlide === 0}
-              className={`px-4 py-2 rounded-lg ${
+              className={` max-md:text-sm px-4 py-2 rounded-lg max-md:px-3 max-md:py-1 ${
                 currentSlide > 0
                   ? "bg-blue-500 text-white hover:bg-blue-600"
                   : "bg-gray-200 dark:bg-gray-700 text-gray-400 cursor-not-allowed"
@@ -173,13 +176,13 @@ export default function HowItWorksModal({
             <div className="flex gap-4">
               <button
                 onClick={() => setShowHowItWorksModal(false)}
-                className="px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100"
+                className="px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 max-md:px-3 max-md:py-1 max-md:text-sm"
               >
                 {t("Skip Tutorial")}
               </button>
               <button
                 onClick={handleNextSlide}
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 max-md:px-3 max-md:py-1 max-md:text-sm"
               >
                 {currentSlide === slides.length - 1
                   ? t("Get Started")
