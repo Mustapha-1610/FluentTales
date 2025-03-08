@@ -127,7 +127,7 @@ export default function HowItWorksModal({
                 <img
                   src={img}
                   alt={`${slides[currentSlide].title} ${idx + 1}`}
-                  className="w-full h-full object-contain p-4"
+                  className="w-full h-full object-cover p-4"
                 />
               </div>
             ))}

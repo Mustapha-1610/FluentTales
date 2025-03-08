@@ -29,8 +29,8 @@ interface SectionProps {
 const Section = ({ title, icon, children, className }: SectionProps) => (
   <div className={className}>
     <div className="flex items-center gap-2 mb-3">
-      <span className="text-lg">{icon}</span>
-      <h3 className="text-lg font-semibold text-black dark:text-white">
+      <span className="text-lg max-md:text-base">{icon}</span>
+      <h3 className="text-lg font-semibold text-black dark:text-white max-md:text-base">
         {title}
       </h3>
     </div>
@@ -59,9 +59,9 @@ export default function CorrectionModal({
         <div className="flex flex-col p-6">
           {/* Modal Header */}
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-semibold text-black dark:text-white">
+            <p className="text-2xl font-semibold text-black dark:text-white max-md:text-xl">
               {t("WritingAnalysis")}
-            </h2>
+            </p>
             <button
               onClick={onClose}
               className="text-gray-500 hover:text-gray-700 dark:text-gray-300"
@@ -72,7 +72,7 @@ export default function CorrectionModal({
 
           {/* General Review */}
           <Section title={t("GeneralReview")} icon="📝">
-            <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-gray-700 dark:text-gray-300">
+            <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-gray-700 dark:text-gray-300 max-md:text-sm">
               {result.generalReview}
             </div>
           </Section>
@@ -90,7 +90,7 @@ export default function CorrectionModal({
                     <h3 className="text-sm font-medium text-green-800 dark:text-green-200">
                       {tip.title}
                     </h3>
-                    <p className="mt-1 text-gray-700 dark:text-gray-300">
+                    <p className="mt-1 text-gray-700 dark:text-gray-300 max-md:text-sm">
                       {tip.description}
                     </p>
                   </div>
@@ -108,7 +108,7 @@ export default function CorrectionModal({
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="mt-6 px-6 py-2 bg-blue-100 dark:bg-blue-900 dark:text-white text-black  rounded-lg  hover:opacity-90 transition-opacity"
+            className="mt-6 px-6 py-2 bg-blue-100 dark:bg-blue-900 dark:text-white text-black  rounded-lg  hover:opacity-90 transition-opacity max-md:text-sm"
           >
             {t("GotIt")}
           </button>
