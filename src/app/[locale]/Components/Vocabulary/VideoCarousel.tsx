@@ -52,7 +52,7 @@ export default function VideoCarousel() {
             className="text-gray-800 dark:text-gray-200"
           />
         </button>
-        <div className="flex-grow mx-4">
+        <div className="flex-grow mx-4 max-md:-mx-3">
           <div className="relative pt-[56.25%]">
             <iframe
               src={`https://www.youtube.com/embed/${

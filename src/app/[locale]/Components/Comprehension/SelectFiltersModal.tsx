@@ -44,11 +44,11 @@ export default function FilterModal({
       <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
         {title}
       </h3>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-md:gap-2">
         {options.map((option) => (
           <label
             key={option}
-            className={`flex items-center p-3 rounded-lg cursor-pointer transition-colors justify-center
+            className={`flex items-center p-3 max-md:p-2 rounded-lg cursor-pointer transition-colors justify-center
               ${
                 state === option
                   ? "bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300"
@@ -61,9 +61,9 @@ export default function FilterModal({
               value={option}
               checked={state === option}
               onChange={(e) => setState(e.target.value)}
-              className="hidden"
+              className="hidden "
             />
-            <span className="capitalize">{t(option)}</span>
+            <span className="capitalize max-md:text-sm">{t(option)}</span>
           </label>
         ))}
       </div>
@@ -80,7 +80,7 @@ export default function FilterModal({
   }
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="relative bg-white dark:bg-gray-900 rounded-xl p-6 w-[900px] max-w-5xl mx-4">
+      <div className="relative bg-white dark:bg-gray-900 rounded-xl p-6 w-[900px] max-w-5xl mx-5 max-md:p-4 max:md-max-w-4xl">
         <button
           onClick={() => setIsOpen(false)}
           className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300"
