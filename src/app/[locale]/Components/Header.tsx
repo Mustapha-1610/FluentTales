@@ -1,9 +1,15 @@
 import * as React from "react";
 import { useLocale, useTranslations } from "next-intl";
+import HowItWorksModal from "./HowItWortks";
+import ContactMeModal from "./ContactMeModal";
 interface Props {
   setShowHowItWorksModal: (show: boolean) => void;
 }
-export default function Header({ setShowHowItWorksModal }: Props) {
+export default function Header() {
+  const [showHowItWorksModal, setShowHowItWorksModal] =
+    React.useState<boolean>(false);
+  const [showContactMeModal, setShowContactMeModal] =
+    React.useState<boolean>(false);
   const t = useTranslations("Header");
   const locale = useLocale();
   function handleScroll() {
@@ -50,6 +56,12 @@ export default function Header({ setShowHowItWorksModal }: Props) {
             >
               {t("LetsStart")}
             </button>
+            <button
+              onClick={() => setShowContactMeModal(true)}
+              className="px-5 py-3 flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 font-semibold rounded-lg shadow hover:bg-gray-300 dark:hover:bg-gray-600 max-md:px-4 max-md:py-3 max-md:text-sm"
+            >
+              {t("ContactMe")}
+            </button>
           </div>
         </div>
         <div className="flex ml-8 w-[57%] max-md:ml-0 max-md:w-full max-md:justify-center">
@@ -60,6 +72,12 @@ export default function Header({ setShowHowItWorksModal }: Props) {
           />
         </div>
       </div>
+      {showHowItWorksModal && (
+        <HowItWorksModal setShowHowItWorksModal={setShowHowItWorksModal} />
+      )}
+      {showContactMeModal && (
+        <ContactMeModal setShowContactMeModal={setShowContactMeModal} />
+      )}
     </div>
   );
 }

@@ -13,8 +13,7 @@ import HowItWorksModal from "./Components/HowItWortks";
 
 export default function Page() {
   const [darkMode, setDarkMode] = useState(false);
-  const [showHowItWorksModal, setShowHowItWorksModal] =
-    useState<boolean>(false);
+
   const [selectedButton, setSelectedButton] = useState<
     "Comprehension" | "Grammar" | "Writing" | "Vocabulary"
   >("Comprehension");
@@ -62,7 +61,7 @@ export default function Page() {
         <LanguageChanger />
       </div>
       <div className="max-w-[1350px] max-md:w-full w-full px-6 mt-32 max-md:mt-20">
-        <Header setShowHowItWorksModal={setShowHowItWorksModal} />
+        <Header />
         <div
           id="content-section"
           className="flex flex-col rounded-none mt-44 mb-16 max-md:mt-24 max-md:mb-8"
@@ -84,9 +83,6 @@ export default function Page() {
           </div>
         </div>
       </div>
-      {showHowItWorksModal && (
-        <HowItWorksModal setShowHowItWorksModal={setShowHowItWorksModal} />
-      )}
     </div>
   );
 }
